@@ -4,28 +4,57 @@
         
     </head>
     <body>
+        
+       
+        <input type="button" id="addfaculty" onfocus=entry(this) value='Add faculty'>
      
-        <button id="A" onclick=function1()>Add Faculty</button>
-     
-        <button id="B" onclick=function2()>Add Batch</button>
+        <input type="button" id="addbatch" onfocus=entry(this) value='Add Batch'>
 
+        <div id='nums' style='display: none;'>
+        <input name="numbers" type='number' placeholder="Enter number of person" >
+        <button onclick=function1(this)>Create</button>
+        <h1>OR</h1>
+        <form action="/upload_faculty" method="post" enctype="multipart/form-data">
+            <input type="file" id="fileSelect" name="fileSelect"/>
+            <button type="submit">Upload</button>
+        </form>
+        </div>
         <form action="/create_faculty" id="formA" style="display: none;" method='POST'>
-            <div>
-                <label for="id">Id/Roll_faculty</label>
-                <input type="number" id="id" name="id" required>
-            </div>
-            <div>
-                <label for="name">Name</label>
-                <input type="name" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+        <table id='table_fac'>
+            
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>password</th>
+            </tr>
+            <tr  id='faculty'>
+                <td>
+                    <div>
+                         <!-- <label for="id">Id/Roll_faculty</label> -->
+                         <input type="number" id="id" name="id" required>
+                    </div>
+                 </td>
+                <td>
+                    <div>
+                        <!-- <label for="name">Name</label> -->
+                        <input type="name" id="name" name="name" required>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <!-- <label for="email">Email</label> -->
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <!-- <label for="password">Password</label> -->
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                </td>
+            </tr>
+    </table>
             <button value="add" name="add">Add</button>
         </form>
 

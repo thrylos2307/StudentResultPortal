@@ -10,9 +10,9 @@ passport.use(new LocalStrategy(
         passReqToCallback: true
     },
     function(req, id, password, done)
-    {
+    {       console.log(req.body,'id=',id,'pass=',password);
         // find a user and establish the identity
-        con.query(`select * from Admin where Name='${id}' and Password='${password}'`,(err,user)=>{
+        con.query(`select * from ${req.body.login} where id='${id}' and Password='${password}'`,(err,user)=>{
             if(err)
             {
                 //req.flash('error', err);
@@ -25,7 +25,9 @@ passport.use(new LocalStrategy(
                 return done(null, false);
             }
             
-            console.log(`${user[0].Name} signed in!`);
+            console.log(`${user[0].id} signed in!`);
+            user[0].login=req.body.login;
+            req.session.type=req.body.login;
             return done(null, user[0]);
         });
     }
@@ -34,13 +36,13 @@ passport.use(new LocalStrategy(
 // serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function(user, done)
 {   console.log('inside serialize');
-    done(null, user.Name);
+    done(null, user);
 });
 
 // deserializing the user from the key in the cookies
 passport.deserializeUser(function(user, done)
-{   console.log('inside deserialize');
-    con.query(`select * from Admin where Name='${user}'`,(err,users)=>{
+{   console.log('inside deserialize and login=>',user.login,' id=>',user);
+    con.query(`select * from ${user.login} where id='${user.id}'`,(err,users)=>{
           //return done(null, user);
         if(err)
         {
@@ -57,11 +59,13 @@ passport.checkAuthentication = function(req, res, next)
 {
     // if the user is signed in, then pass on the request to the next function(controller's action)
     if(req.isAuthenticated())
-    {   console.log('user fund ');
+    {   console.log('user found ');
+        console.log(req.body,req.user);
         return next();
     }
     console.log("user not signed in");
     // if the user is not signed in
+     console.log('check type of login=>',req.body.login)
     return res.redirect('/login');
 }
 

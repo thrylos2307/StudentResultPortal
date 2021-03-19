@@ -1,0 +1,22 @@
+<h1>faculty</h1>
+<input type="button" id="addfaculty" onfocus=Result(this) value='Create Result for student'>
+     
+<input type="button" id="addbatch" onfocus=Exam(this) value='Add new exam'>
+
+<div id='add_faculty' style='display: none;'>
+<input name="numbers" type='number' placeholder="Enter number of faculty" >
+<button onclick=function1(this)>Create</button>
+<h1>OR</h1>
+<form action="/upload_faculty" method="post" enctype="multipart/form-data">
+    <input type="file" id="fileSelect" name="fileSelect"/>
+    <button type="submit">Upload</button>
+</form>
+</div>
+<form id="login_info" action="/login/create-session" method="POST" >
+    <div>
+        Hello there
+    </div>
+    
+</form> 
+
+<script type="text/javascript" src="/js/faculty.js"></script>

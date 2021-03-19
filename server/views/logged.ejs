@@ -1,103 +1,194 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-    </head>
-    <body>
-        
-       
-        <input type="button" id="addfaculty" onfocus=entry(this) value='Add faculty'>
-     
-        <input type="button" id="addbatch" onfocus=entry(this) value='Add Batch'>
 
-        <div id='nums' style='display: none;'>
-        <input name="numbers" type='number' placeholder="Enter number of person" >
-        <button onclick=function1(this)>Create</button>
-        <h1>OR</h1>
-        <form action="/upload_faculty" method="post" enctype="multipart/form-data">
-            <input type="file" id="fileSelect" name="fileSelect"/>
-            <button type="submit">Upload</button>
-        </form>
+    <head>
+
+    </head>
+
+    <body>
+
+
+        <input type="button" id="addfaculty" onfocus=faculty(this) value='Add faculty'>
+
+        <input type="button" id="addbatch" onfocus=batch(this) value='Add Batch'>
+        <input type="button" id="addmajor" onfocus=major(this) value='Add Major'>
+        <div id='add_faculty' style='display: none;'>
+            <input name="numbers" type='number' placeholder="Enter number of faculty">
+            <button onclick=function1(this)>Create</button>
+            <h1>OR</h1>
+            <form action="/upload_faculty" method="post" enctype="multipart/form-data">
+                <input type="file" id="fileSelect" name="fileSelect" />
+                <button type="submit">Upload</button>
+            </form>
         </div>
+        <div id='add_batch' style='display: none;'>
+            <input name="numbers" type='number' placeholder="Enter number of Student">
+            <button onclick=function2(this)>Create</button>
+            <h1>OR</h1>
+            <form action="/upload_student" method="post" enctype="multipart/form-data">
+                <input type="file" id="fileSelect" name="fileSelect" />
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div id='add_major' style='display: none;'>
+            <input name="numbers" type='number' placeholder="Enter number of major">
+            <button onclick=function3(this)>Create</button>
+            <h1>OR</h1>
+            <form action="/upload_major" method="post" enctype="multipart/form-data">
+                <input type="file" id="fileSelect" name="fileSelect" />
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
         <form action="/create_faculty" id="formA" style="display: none;" method='POST'>
-        <table id='table_fac'>
-            
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>email</th>
-                <th>password</th>
-            </tr>
-            <tr  id='faculty'>
-                <td>
-                    <div>
-                         <!-- <label for="id">Id/Roll_faculty</label> -->
-                         <input type="number" id="id" name="id" required>
-                    </div>
-                 </td>
-                <td>
-                    <div>
-                        <!-- <label for="name">Name</label> -->
-                        <input type="name" id="name" name="name" required>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <!-- <label for="email">Email</label> -->
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <!-- <label for="password">Password</label> -->
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                </td>
-            </tr>
-    </table>
+            <table id='table_fac'>
+
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>password</th>
+                </tr>
+                <tr id='faculty'>
+                    <td>
+                        <div>
+                            <!-- <label for="id">Id/Roll_faculty</label> -->
+                            <input type="number" id="id" name="id" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <!-- <label for="name">Name</label> -->
+                            <input type="name" id="name" name="name" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <!-- <label for="email">Email</label> -->
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <!-- <label for="password">Password</label> -->
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button value="add" name="add">Add</button>
+        </form>
+        <form action="/create_major" id="formC" style="display: none;" method='POST'>
+            <table id='table_major'>
+
+                <tr>
+                    <th>Code</th>
+                    <th>Major</th>
+                    <th>Faculty_id</th>
+                    <th>FacultyName</th>
+                </tr>
+                <tr id='major'>
+                    <td>
+                        <div>
+                            <!-- <label for="id">Id/Roll_faculty</label> -->
+                            <input type="text" id="Code" name="Code" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <!-- <label for="name">Name</label> -->
+                            <input type="text" id="Major" name="Major" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <!-- <label for="email">Email</label> -->
+                            <input type="number" id="Faculty_id" name="Faculty_id" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <!-- <label for="password">Password</label> -->
+                            <input type="text" id="FacultyName" name="FacultyName" required>
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <button value="add" name="add">Add</button>
         </form>
 
-
         <form action="/create_student" id='formB' style="display: none;" method="POST">
-            <div>
-                <label for="id">Id/Roll_student</label>
-                <input type="number" id="id" name="id" required>
-            </div>
-            <div>
-                <label for="name">Name</label>
-                <input type="name" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <label for="batch">Batch</label>
-                <input type="number" id="batch" name="batch" required>
-            </div>
-            <div>
-                <label for="branch">Branch</label>
-                <select name="branch" id="branch">
-                    <option value="CSE">CSE</option>
-                    <option value="ECE">ECE</option>
-                </select>
-            </div>
-            <div>
-                <label for="group">Group</label>
-                <input type="text" id="group" name="group" required>
-            </div>
-            <div>
-                <label for="sem">Sem</label>
-                <input type="number" id="sem" name="sem" required>
-            </div>
+            <table id='table_student'>
+
+                <tr>
+                    <th>Roll</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Batch</th>
+                    <th>Branch</th>
+                    <th>Group</th>
+                    <th>Sem</th>
+                </tr>
+                <tr id='student'>
+                    <td>
+                        <div>
+
+                            <input type="number" id="id" name="id" required>
+                        </div>
+                    </td>
+                    <td>
+
+                        <div>
+
+                            <input type="name" id="name" name="name" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+
+                            <input type="number" id="batch" name="batch" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+
+                            <select name="branch" id="branch">
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+
+                            <input type="text" id="group" name="group" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+
+                            <input type="number" id="sem" name="sem" required>
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <button value="add" name="add">Add</button>
         </form>
         <script type="text/javascript" src="/js/frontend.js"></script>
 
     </body>
+
 </html>

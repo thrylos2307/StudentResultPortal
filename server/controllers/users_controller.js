@@ -6,6 +6,7 @@ module.exports.signIn=function(req,res){
     console.log('Im inside pass sigin func');
     if(req.isAuthenticated()){
         console.log('forwarding for log ejs');
+        console.log(res.body);
         return res.render('logged.ejs');
     }
     console.log(req.cookies,'cookies');
@@ -19,7 +20,19 @@ module.exports.createSession=function(req,res){
     
     //req.flash('success','Logged in Successfully');
     console.log(' creating session and sending to logged ejs');
-    return res.render('logged.ejs');
+    console.log(req.body);
+    if(req.body.login==='Admin')
+    {
+        return res.render('logged.ejs');
+    }
+    else if(req.body.login==='student_login')
+    {
+        return res.render('student_home.ejs');
+    }
+    else if(req.body.login==='faculty_login')
+    {
+        return res.render('faculty_home.ejs');
+    }
 }
 
 // module.exports.destroySession=function(req,res){

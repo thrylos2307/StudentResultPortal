@@ -1,22 +1,110 @@
-<h1>faculty</h1>
-<input type="button" id="addfaculty" onfocus=Result(this) value='Create Result for student'>
-     
-<input type="button" id="addbatch" onfocus=Exam(this) value='Add new exam'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/logged.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<div class="container-fluid">
 
-<div id='add_faculty' style='display: none;'>
-<input name="numbers" type='number' placeholder="Enter number of faculty" >
-<button onclick=function1(this)>Create</button>
-<h1>OR</h1>
-<form action="/upload_faculty" method="post" enctype="multipart/form-data">
-    <input type="file" id="fileSelect" name="fileSelect"/>
-    <button type="submit">Upload</button>
-</form>
+    <br>
+    <br>
+    <br>
+    <h1>faculty</h1>
+    <input type="button" id="addresult" onfocus=Result(this) value='Create Result for student'>
+
+    <input type="button" id="addexam" onfocus=Exam(this) value='Add new exam'>
+
+    <form id='tables' action='/faculty/showtables' method="POST">
+        <input type="submit" name='tables' value='show tables'>
+    </form>
+    <br>
+    <br>
 </div>
-<form id="login_info" action="/login/create-session" method="POST" >
-    <div>
-        Hello there
-    </div>
-    
-</form> 
+<div id='num' style='display: none;'>
+    <input name="numbers" type='number' placeholder="How many col u want to create">
+    <button onclick=function1(this)>Create</button>
+</div>
+
+<div id='add_table' style='display: none;'>
+    <form id="login_info" action="/faculty/createtable" method="POST">
+        <div>
+            <!-- <label for="id">Id/Roll_faculty</label> -->
+            <input type="number" id="batch" name="batch_year" placeholder="Batch/year" required>
+        </div>
+        <div>
+            <label for="sem">SEM:</label>
+
+            <select type='number' name="sem" id="sem">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+            </select>
+        </div>
+        <div>
+            <!-- <label for="id">Id/Roll_faculty</label> -->
+            <input type="text" id="code" name="code" placeholder="major_code" required>
+        </div>
+        <div>
+            <label for="branch">Branch:</label>
+            <select name="branch" id="branch">
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="CSE_ECE">Both</option>
+            </select>
+
+        </div>
+        <button value="add" name="create">Create</button>
+    </form>
+</div>
+<div id='add_col' style='display: none;'>
+    <form id="login_info" action="/faculty/updatetable" method="POST">
+        <div>
+            <input type="number" id="batch" name="batch_year" placeholder="Batch/year" required>
+        </div>
+        <div>
+            <label for="sem">SEM:</label>
+
+            <select type='number' name="sem" id="sem">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+            </select>
+        </div>
+        <div>
+            <!-- <label for="id">Id/Roll_faculty</label> -->
+            <input type="text" id="code" name="code" placeholder="major_code" required>
+        </div>
+        <div>
+            <label for="branch">Branch:</label>
+            <select name="branch" id="branch">
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="CSE_ECE">Both</option>
+            </select>
+
+        </div>
+        <div id='column'>
+            <label for="col">Column:</label>
+            <input type="text" id="col" name="col" placeholder="Exam name" required>
+            <select name="type" id="type">
+                <option value="double">Marks</option>
+                <option value="varchar(10)">Grade</option>
+            </select>
+
+        </div>
+
+        <button value="add" name="update">Create</button>
+    </form>
+</div>
 
 <script type="text/javascript" src="/js/faculty.js"></script>

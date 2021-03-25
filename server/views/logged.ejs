@@ -2,58 +2,81 @@
 <html>
 
     <head>
-
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/logged.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     </head>
 
     <body>
+        <div class="container-fluid">
 
+            <br>
+            <br>
+            <br>
+            <h1>WELCOME</h1>
+            <input class="btn btn-primary custom" type="button" id="addfaculty" onfocus=faculty(this)
+                value='Add faculty'><br>
 
-        <input type="button" id="addfaculty" onfocus=faculty(this) value='Add faculty'>
+            <input class="btn btn-primary custom" type="button" id="addbatch" onfocus=batch(this) value='Add Batch'><br>
+            <input class="btn btn-primary custom" type="button" id="addmajor" onfocus=major(this) value='Add Major'><br>
+            <br>
+            <br>
+        </div>
 
-        <input type="button" id="addbatch" onfocus=batch(this) value='Add Batch'>
-        <input type="button" id="addmajor" onfocus=major(this) value='Add Major'>
-        <div id='add_faculty' style='display: none;'>
-            <input name="numbers" type='number' placeholder="Enter number of faculty">
-            <button onclick=function1(this)>Create</button>
+        <div id='add_faculty' style='display: none;' class="di">
+            <input class="input1 rounded" name="numbers" type='number' placeholder="Enter number of faculty">
+            <button class="btn btn-secondary" onclick=function1(this)>Create</button>
+            <br><br><br>
             <h1>OR</h1>
+            <br>
             <form action="/upload_faculty" method="post" enctype="multipart/form-data">
-                <input type="file" id="fileSelect" name="fileSelect" />
-                <button type="submit">Upload</button>
+                <input class="input2" type="file" id="fileSelect" name="fileSelect" required />
+                <button class="upload btn btn-secondary" type="submit">Upload</button>
             </form>
         </div>
-        <div id='add_batch' style='display: none;'>
-            <input name="numbers" type='number' placeholder="Enter number of Student">
-            <button onclick=function2(this)>Create</button>
+
+        <div id='add_batch' style='display: none;' class="di">
+            <input class="input1 rounded" name="numbers" type='number' placeholder="Enter number of Student">
+            <button class="btn btn-secondary" onclick=function2(this)>Create</button>
+            <br><br><br>
             <h1>OR</h1>
+            <br>
             <form action="/upload_student" method="post" enctype="multipart/form-data">
-                <input type="file" id="fileSelect" name="fileSelect" />
-                <button type="submit">Upload</button>
+                <input class="input2" type="file" id="fileSelect" name="fileSelect" />
+                <button class="upload btn btn-secondary" type="submit">Upload</button>
             </form>
         </div>
-        <div id='add_major' style='display: none;'>
-            <input name="numbers" type='number' placeholder="Enter number of major">
-            <button onclick=function3(this)>Create</button>
+        <div id='add_major' style='display: none;' class="di">
+            <input class="input1 rounded" name="numbers" type='number' placeholder="Enter number of major">
+            <button class="btn btn-secondary" onclick=function3(this)>Create</button>
+            <br><br><br>
             <h1>OR</h1>
+            <br>
             <form action="/upload_major" method="post" enctype="multipart/form-data">
-                <input type="file" id="fileSelect" name="fileSelect" />
-                <button type="submit">Upload</button>
+                <input class="input2" type="file" id="fileSelect" name="fileSelect" />
+                <button class="upload btn btn-secondary" type="submit">Upload</button>
             </form>
         </div>
 
-        <form action="/create_faculty" id="formA" style="display: none;" method='POST'>
-            <table id='table_fac'>
-
-                <tr>
-                    <th>id</th>
-                    <th>Name</th>
-                    <th>email</th>
-                    <th>password</th>
-                </tr>
+        <form action="/create_faculty" id="formA" style="display: none;" method='POST' class="formm">
+            <table id='table_fac' class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">email</th>
+                        <th scope="col">password</th>
+                    </tr>
+                </thead>
                 <tr id='faculty'>
                     <td>
                         <div>
                             <!-- <label for="id">Id/Roll_faculty</label> -->
-                            <input type="number" id="id" name="id" required>
+                            <input class="" type="number" id="id" name="id" required>
                         </div>
                     </td>
                     <td>
@@ -76,17 +99,18 @@
                     </td>
                 </tr>
             </table>
-            <button value="add" name="add">Add</button>
+            <button class="" value="add" name="add">Add</button>
         </form>
-        <form action="/create_major" id="formC" style="display: none;" method='POST'>
-            <table id='table_major'>
-
+        <form action="/create_major" id="formC" style="display: none;" method='POST' class="formm">
+            <table id='table_major' class="table">
+                <thead class="thead-dark">
                 <tr>
                     <th>Code</th>
                     <th>Major</th>
                     <th>Faculty_id</th>
                     <th>FacultyName</th>
                 </tr>
+            </thead>
                 <tr id='major'>
                     <td>
                         <div>
@@ -117,9 +141,9 @@
             <button value="add" name="add">Add</button>
         </form>
 
-        <form action="/create_student" id='formB' style="display: none;" method="POST">
-            <table id='table_student'>
-
+        <form action="/create_student" id='formB' style="display: none;" method="POST" class="formm">
+            <table id='table_student' class="table">
+                <thead class="thead-dark">
                 <tr>
                     <th>Roll</th>
                     <th>Name</th>
@@ -130,6 +154,8 @@
                     <th>Group</th>
                     <th>Sem</th>
                 </tr>
+                </thead>
+
                 <tr id='student'>
                     <td>
                         <div>
@@ -188,7 +214,7 @@
             <button value="add" name="add">Add</button>
         </form>
         <script type="text/javascript" src="/js/frontend.js"></script>
-
+    
     </body>
 
 </html>

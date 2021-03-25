@@ -1,0 +1,10 @@
+
+<div>
+    <% if(table) {%>
+        <%for( var i in table) {%>
+            <form id='result' method="POST" action="/faculty/results" >
+                <button value=<%=table[i]%> name="table"><%= table[i]%></button>
+            </form>
+        <% } %>     
+    <%} %> 
+</div>

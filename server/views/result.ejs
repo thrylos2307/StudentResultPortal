@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<table style="border: 1px solid #dddddd;">
+    <tr>
+        <% for(var key in results[0]) {%>
+            <th style="border: 1px solid #dddddd;">
+                <%=key %>
+            </th>
+            <% } %>
+    </tr>
+    <!-- <form>
+    
+</form> -->
+    <form action="/faculty/update" method="post">
+        <input value="<%=tablename%>" style="display: none;" name="table">
+        <% for(var i=0;i<results.length;i++) {%>
+            <tr>
+                <% for(var k in results[i]) {%>
+                    <% if(k=="roll" ) {%>
+                        <td style="border: 1px solid #dddddd;"><input id="<%=results[i].roll%> <%=k%>"
+                                value="<%=results[i][k]%>" readonly> </td>
+
+                        <% }else{ %>
+                            <td style="border: 1px solid #dddddd;"><input id="<%=results[i].roll%> <%=k%>"
+                                    value="<%=results[i][k]%>" onfocus=edited(this.id) readonly> </td>
+                            <% } %>
+                                <% } %>
+            </tr>
+            <a href="/faculty/delete?roll=<%=results[i].roll%>&table=<%=tablename%>"><i
+                    class="fa fa-trash remove-candidate"></i></a>
+            <% } %>
+                <button type="submit">Update</button>
+    </form>
+
+</table>
+<button id="add">Add more </button>
+
+<form action="" method="post" id='addnew' style="display: none;">
+    <table id="tableid">
+        <tr>
+            <% for(var key in results[0]) {%>
+                <th style="border: 1px solid #dddddd;">
+                    <%=key %>
+                </th>
+                <% } %>
+        </tr>
+        <!-- <tr id="row">,
+            <% for(var key in results[0]) {%>
+                <td>
+                    <input name="<%=key%>">
+                </td>
+                <%}%>
+        </tr> -->
+    </table>
+</form>
+
+<script>
+    var tmp= '<tr id="row">'
+            '<% for(var key in results[0]) {%>'
+        tmp+= '<td>'
+            tmp+='<input name="<%=key%>">'
+            tmp+='</td>'
+                '<%}%>'
+                tmp+='</tr>'
+                
+    document.getElementById('add').onclick = () => {
+        document.getElementById('addnew').style.display='block';
+        // let init = document.getElementById('row').innerHTML;
+        // console.log('<%- JSON.stringify(results[0]) %>');
+        // console.log("printing init", init);
+        document.getElementById('tableid').innerHTML += '<br>' + tmp;
+    };
+
+
+
+    function edited(obj) {
+        var ch = document.getElementById(obj);
+        ch.removeAttribute('readonly');
+        ch.setAttribute('name', obj);
+        /// var x=ch.getAttribute('data-val');
+
+        //this.setAttribute('name',);
+        console.log(obj);
+
+
+    }
+</script>

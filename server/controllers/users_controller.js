@@ -19,8 +19,8 @@ module.exports.signIn=function(req,res){
 module.exports.createSession=function(req,res){
     
     //req.flash('success','Logged in Successfully');
-    console.log(' creating session and sending to logged ejs');
-    console.log(req.body);
+    console.log('creating session and sending to logged ejs');
+    console.log('result',req.body,res.body);
     if(req.body.login==='Admin')
     {
         return res.render('logged.ejs');

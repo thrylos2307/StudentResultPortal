@@ -13,7 +13,7 @@ app.set('view-engine','ejs');
 app.use(express.static(path.join(__dirname, 'static')));
 const jsonParser=bodyParser.json();
 const urlencodedParser=bodyParser.urlencoded({ extended: true });
-
+app.use('/css',express.static(__dirname+'/node_modules/bootstrap/dist/css'));
 app.use(cors());
 app.use(urlencodedParser);
 app.use(session({

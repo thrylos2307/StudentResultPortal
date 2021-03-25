@@ -1,0 +1,93 @@
+.custom{
+    width: 150px !important;
+    height: 50px;
+margin-left: 40px ;
+margin-bottom: 60px;
+  
+}
+.btn-primary{
+    background-color:#9c754856 ;
+    border: none;
+   
+}
+#addfaculty:hover{
+    background-color: rgba(79, 128, 69, 0.445);
+}
+#addbatch:hover{
+    background-color:#e0cfc0;
+}
+#addmajor:hover{
+    background-color: #d5a667;
+}
+.container-fluid{
+    
+    padding: 0 0;
+    background-image: url("../admin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    padding-bottom: 10px;
+
+}
+.container-fluid h1{
+    font-family: 'Dancing Script', cursive;
+     color: beige;
+     font-size: 100px;
+    /* position: absolute; */
+    margin-top: 0.3%;
+    /* margin-left: 45%; */
+    text-align: center;
+   
+}
+/* Add faculty  */
+body{
+    background-image: url('../blackoard.png');  
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.di{
+    margin: 10px 40%;
+    background-color:#76a96f;
+
+}
+.di h1{
+    margin-left: 40%;
+    color: rgb(7, 49, 26);
+}
+
+.btn-light{
+    padding: 1px;
+    width: 60px; 
+   
+}
+
+.di .input1{
+    margin-left: 15%;
+    text-align: center;
+    margin-top: 10px;
+    border-color: azure;
+}
+.di .input2{
+    margin-left: 25%;
+    margin-top: 10px;
+}
+.upload{
+    margin-left: 40%;
+    width:70px;
+    text-align: center;
+}
+.di button:nth-child(2){
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.formm{
+    margin-left:10%;
+    margin-right: 10%;
+}
+table, th, td {
+    border: 1px solid whitesmoke ;
+    border-collapse: collapse;
+}
+td{
+    width: 100px !important;
+}

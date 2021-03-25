@@ -11,6 +11,9 @@ function faculty(obj)
     document.getElementById('add_faculty').style.display='block';
     document.getElementById('add_batch').style.display='none';
     document.getElementById('add_major').style.display='none';
+    formB.style.display='none';
+    formA.style.display='none';
+    formC.style.display='none';
 }
 function batch(obj)
 { console.log("hello i am here");
@@ -19,6 +22,9 @@ function batch(obj)
     document.getElementById('add_batch').style.display='block';
     document.getElementById('add_faculty').style.display='none';
     document.getElementById('add_major').style.display='none';
+    formB.style.display='none';
+    formA.style.display='none';
+    formC.style.display='none'
 }
 function major(obj)
 { console.log("hello i am here");
@@ -27,6 +33,9 @@ function major(obj)
     document.getElementById('add_major').style.display='block';
     document.getElementById('add_batch').style.display='none';
     document.getElementById('add_faculty').style.display='none';
+    formB.style.display='none';
+    formA.style.display='none';
+    formC.style.display='none'
 }
  
  

@@ -1,7 +1,22 @@
 <h1>student</h1>
-<form id="login_info" action="/login/create-session" method="POST" >
+<h1>Welcome to academic portal</h1>
+<div id='num' >
+    <button onclick=function1(this)>View Result</button>
+</div>
+<div id='num'>
+    <a  href="http://iiitg.ac.in/curriculum.php"><button onclick=function1(this)>Subject Info</button></a>
+</div>
+<form id='result' action="/showresult" method="POST" style="display: none;" >
     <div>
-        hello student
+        <label for="sem">Select Sem:</label>
+       
+        <select type='number' name="sem" id="sem">
+            <% for(var i=1;i<=sem;i++) {%> 
+            <option value=<%=i%>><%=i%></option>
+            <% } %> 
+        </select> 
+        <button type="submit">Show</button>
     </div>
  
 </form> 
+<script type="text/javascript" src="/js/student.js"></script>

@@ -4,9 +4,10 @@ const path=require('path');
 
 module.exports.signIn=function(req,res){
     console.log('Im inside pass sigin func');
+    console.log("print from signin func",req.body,req.cookies,req.session,req.user);
     if(req.isAuthenticated()){
-        console.log('forwarding for log ejs');
-        console.log(res.body);
+        console.log('forwarding for ejs sign in');
+        console.log(req.session.passport.login);
         return res.render('logged.ejs');
     }
     console.log(req.cookies,'cookies');
@@ -19,19 +20,19 @@ module.exports.signIn=function(req,res){
 module.exports.createSession=function(req,res){
     
     //req.flash('success','Logged in Successfully');
-    console.log('creating session and sending to logged ejs');
-    console.log('result',req.body,res.body);
+    console.log('creating session and sending to further ejs');
+    console.log('create session result=>',req.body,res.body,req.cookies,req.session,req.user);
     if(req.body.login==='Admin')
     {
         return res.render('logged.ejs');
     }
     else if(req.body.login==='student_login')
-    {
-        return res.render('student_home.ejs');
+    {     console.log(req.session.passport.user.Sem);
+        return res.render('student_home.ejs',{sem:req.session.passport.user.Sem});
     }
     else if(req.body.login==='faculty_login')
     {
-        return res.render('faculty_home.ejs');
+        return res.render('faculty_home.ejs',{name:req.session.passport.user.Name.toUpperCase()});
     }
 }
 

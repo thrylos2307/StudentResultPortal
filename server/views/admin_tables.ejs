@@ -1,0 +1,69 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  .pt-3-half { padding-top: 1.4rem; }
+  th{
+      background-color: paleturquoise;
+  }
+  h3{
+    font-family: 'Pacifico', cursive;
+     color: #007580;
+  }
+</style>
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4" style="margin-bottom: 40px;">
+       <%if(name=="faculty_login"){%>
+        Faculty Table
+        <% } else if(name=="student_login"){%> 
+                Student Table
+            <%} else{  %> 
+            Major Table
+                <%}%>
+    </h3>
+    <div class="card-body">
+        <div id="table" class="table-editable table-responsive">
+            <% if(table) {%>
+                <table class="table table-bordered table-responsive-md table-striped text-center" style="border-radius: 10px !important;">
+                    <thead>
+                        <tr>
+                            <%for( var key in table[0]) {%>
+                                <% if(key=='id' || key=='Code' ) {%>
+                                    <% var kid=key %>
+                                        <% } %>
+                                            <th class="text-center">
+                                                <%=key%>
+                                            </th>
+
+                                            <% } %>
+
+                                                <th class="text-center">
+                                                    Delete
+                                                </th>
+                        </tr>
+                    </thead>
+                    <% for(var i=0;i<table.length;i++){ %>
+                        <tr>
+                            <%for( var key in table[i]) {%>
+                                <td class="pt-3-half" contenteditable="true">
+                                    <%=table[i][key]%>
+                                </td>
+                                <% } %>
+                                    <td>
+                                        <span class="table-remove"><a class="delete" title="Delete"
+                                                data-toggle="tooltip"
+                                                href="/admin/delete?<%=kid%>=<%=table[i][kid]%>&table=<%=name%>"><i
+                                                    class="fa fa-trash remove-candidate"></i></a></span>
+                                    </td>
+                        </tr>
+                        <% } %>
+                </table>
+                <%} %>
+
+        </div>
+    </div>
+</div>

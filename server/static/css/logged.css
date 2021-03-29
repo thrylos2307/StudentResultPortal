@@ -40,13 +40,14 @@ margin-bottom: 60px;
 }
 /* Add faculty  */
 body{
-    background-image: url('../blackoard.png');  
-    background-size: cover;
+    background-image: url('../grass.jpg');  
     background-repeat: no-repeat;
+    background-color:#d4e2d4 ;
 }
 .di{
     margin: 10px 40%;
-    background-color:#76a96f;
+    background-color:#5eaaa8;
+    border-radius: 10px;
 
 }
 .di h1{

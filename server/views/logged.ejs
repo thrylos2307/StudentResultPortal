@@ -26,7 +26,26 @@
             <br>
             <br>
         </div>
-
+        <div class="btn-group btn-group-justified " style="display: grid; grid-template-columns: 33.33% 33.33% 33.33%;">
+            <!-- <div>
+                <form action="/showfaculty" method="post">
+                    <button class="upload btn btn-secondary" type="submit">Show Faculty</button>
+                </form>
+            </div>
+            <div>
+                <form action="/showbatch" method="post">
+                    <button class="upload btn btn-secondary" type="submit">Show Batch</button>
+                </form>
+            </div>
+            <div>
+                <form action="/showmajor" method="post">
+                    <button class="upload btn btn-secondary" type="submit">Show Major</button>
+                </form>
+            </div> -->
+            <a href="/admin/showtables?table=faculty_login" class="btn btn-primary ">Show Faculty</a>
+            <a href="/admin/showtables?table=student_login" class="btn btn-primary ">Show Batch</a>
+            <a href="/admin/showtables?table=subject_info" class="btn btn-primary ">Show Major</a>
+        </div>
         <div id='add_faculty' style='display: none;' class="di">
             <input class="input1 rounded" name="numbers" type='number' placeholder="Enter number of faculty">
             <button class="btn btn-secondary" onclick=function1(this)>Create</button>
@@ -104,13 +123,13 @@
         <form action="/create_major" id="formC" style="display: none;" method='POST' class="formm">
             <table id='table_major' class="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th>Code</th>
-                    <th>Major</th>
-                    <th>Faculty_id</th>
-                    <th>FacultyName</th>
-                </tr>
-            </thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Major</th>
+                        <th>Faculty_id</th>
+                        <th>FacultyName</th>
+                    </tr>
+                </thead>
                 <tr id='major'>
                     <td>
                         <div>
@@ -144,16 +163,16 @@
         <form action="/create_student" id='formB' style="display: none;" method="POST" class="formm">
             <table id='table_student' class="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th>Roll</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Batch</th>
-                    <th>Branch</th>
-                    <th>Group</th>
-                    <th>Sem</th>
-                </tr>
+                    <tr>
+                        <th>Roll</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Batch</th>
+                        <th>Branch</th>
+                        <th>Group</th>
+                        <th>Sem</th>
+                    </tr>
                 </thead>
 
                 <tr id='student'>
@@ -214,7 +233,7 @@
             <button value="add" name="add">Add</button>
         </form>
         <script type="text/javascript" src="/js/frontend.js"></script>
-    
+
     </body>
 
 </html>

@@ -1,39 +1,63 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/result.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<div class="container-fluid">
 
-<table style="border: 1px solid #dddddd;">
+    <br>
+    <br>
+
+    <h1>
+        <%=tablename%>
+    </h1>
+    <hr>
+    <hr>
+
+</div>
+<br>
+
+
+<table class="table table-bordered table-responsive-md  text-center"
+    style="border-radius: 10px !important;">
     <tr>
         <% for(var key in results[0]) {%>
             <th style="border: 1px solid #dddddd;">
                 <%=key %>
             </th>
             <% } %>
+                <th>Delete</th>
     </tr>
-    <!-- <form>
-    
-</form> -->
+
     <form action="/faculty/update" method="post">
         <input value="<%=tablename%>" style="display: none;" name="table">
         <% for(var i=0;i<results.length;i++) {%>
             <tr>
                 <% for(var k in results[i]) {%>
                     <% if(k=="roll" ) {%>
-                        <td style="border: 1px solid #dddddd;"><input id="<%=results[i].roll%> <%=k%>"
-                                value="<%=results[i][k]%>" readonly> </td>
+                        <td ><input id="<%=results[i].roll%> <%=k%>" value="<%=results[i][k]%>" readonly> </td>
 
                         <% }else{ %>
-                            <td style="border: 1px solid #dddddd;"><input id="<%=results[i].roll%> <%=k%>"
-                                    value="<%=results[i][k]%>" onfocus=edited(this.id) readonly> </td>
+                            <td><input id="<%=results[i].roll%> <%=k%>" value="<%=results[i][k]%>" onfocus=edited(this.id) readonly> </td>
                             <% } %>
                                 <% } %>
+
+                                    <td>
+                                        <a href="/faculty/delete?roll=<%=results[i].roll%>&table=<%=tablename%>"><i
+                                                class="fa fa-trash remove-candidate"></i></a>
+                                    </td>
             </tr>
-            <a href="/faculty/delete?roll=<%=results[i].roll%>&table=<%=tablename%>"><i
-                    class="fa fa-trash remove-candidate"></i></a>
             <% } %>
-                <button type="submit">Update</button>
+            <button type="submit">Update</button>
     </form>
 
 </table>
 <button id="add">Add more </button>
+</div>
 
 <form action="" method="post" id='addnew' style="display: none;">
     <table id="tableid">
@@ -55,16 +79,16 @@
 </form>
 
 <script>
-    var tmp= '<tr id="row">'
-            '<% for(var key in results[0]) {%>'
-        tmp+= '<td>'
-            tmp+='<input name="<%=key%>">'
-            tmp+='</td>'
-                '<%}%>'
-                tmp+='</tr>'
-                
+    var tmp = '<tr id="row">'
+    '<% for(var key in results[0]) {%>'
+    tmp += '<td>'
+    tmp += '<input name="<%=key%>">'
+    tmp += '</td>'
+    '<%}%>'
+    tmp += '</tr>'
+
     document.getElementById('add').onclick = () => {
-        document.getElementById('addnew').style.display='block';
+        document.getElementById('addnew').style.display = 'block';
         // let init = document.getElementById('row').innerHTML;
         // console.log('<%- JSON.stringify(results[0]) %>');
         // console.log("printing init", init);

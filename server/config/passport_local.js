@@ -2,7 +2,7 @@ const con=require("../privacy.js");
 const passport = require('passport');
 
 const LocalStrategy = require('passport-local').Strategy;
-console.log('Inside passport_local verify');
+console.log('Inside passport_local strategy verify');
 // authentication using passport
 passport.use(new LocalStrategy(
     {
@@ -21,7 +21,7 @@ passport.use(new LocalStrategy(
             console.log(user[0]);
             if(!user[0])
             {
-            flash('error', 'Invalid Username/Password');
+            console.log('error', 'Invalid Username/Password');
                 return done(null, false);
             }
             
@@ -58,8 +58,9 @@ passport.deserializeUser(function(user, done)
 passport.checkAuthentication = function(req, res, next)
 {
     // if the user is signed in, then pass on the request to the next function(controller's action)
+    console.log("i''m inside checkauth =>",req.body,req.cookies,req.session,req.user);
     if(req.isAuthenticated())
-    {   console.log('user found ');
+    {   console.log('user found in checkauth');
         console.log(req.body,req.user);
         return next();
     }
@@ -70,9 +71,9 @@ passport.checkAuthentication = function(req, res, next)
 }
 
 passport.setAuthenticatedUser = function(req, res, next)
-{   console.log(req.user,'A');
+{   console.log("inside setauth func",req.user,req.cookies,req.body,req.session);
     if(req.isAuthenticated())
-    {   console.log('saving user info');
+    {   console.log('saving user info in setauth');
         // req.user contains the current signed in user from the session cookie and we are just sending it to the local for the views
         res.locals.user = req.user;
     }

@@ -1,0 +1,19 @@
+body {
+    background-image: url('../board.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+ .container-fluid h1{
+     margin-left: 30%;
+     font-family: 'Train One', cursive;
+ }
+ 
+ 
+ .container-fluid hr{
+    border-top: 1px dashed #e0dbd1;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+table{
+    margin-right: 10%;
+}

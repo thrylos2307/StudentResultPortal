@@ -1,40 +1,90 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="/css/logged.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/faculty.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style type="text/css">
+    .form-style-8 {
+        font: 16px Arial, Helvetica, sans-serif;
+        width: 500px;
+        padding: 30px;
+        background: #ccffe3;
+        margin: 50px auto;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+        -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+        -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+
+    }
+
+    .form-style-8 input[type="text"],
+    .form-style-8 input[type="email"],
+    .form-style-8 input[type="number"],
+    .form-style-8 input[type="password"],
+    .form-style-8 select {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        display: block;
+        width: 100%;
+        padding: 7px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        background: transparent;
+        margin-bottom: 10px;
+        font: 16px Arial, Helvetica, sans-serif;
+        height: 45px;
+    }
+</style>
 <div class="container-fluid">
 
     <br>
     <br>
-    <br>
-    <h1>faculty</h1>
-    <input type="button" id="addresult" onfocus=Result(this) value='Create Result for student'>
 
-    <input type="button" id="addexam" onfocus=Exam(this) value='Add new exam'>
+    <h1>Welcome</h1>
+    <h3>
+        <%=name%> Sir/Mam <span><i class="fas fa-chalkboard-teacher"></i></span>
+    </h3>
+    <hr>
+    <hr>
 
-    <form id='tables' action='/faculty/showtables' method="POST">
-        <input type="submit" name='tables' value='show tables'>
-    </form>
-    <br>
-    <br>
 </div>
-<div id='num' style='display: none;'>
-    <input name="numbers" type='number' placeholder="How many col u want to create">
-    <button onclick=function1(this)>Create</button>
+<div class="d-flex justify-content-center" style="margin-top: 30px;">
+    <input class="btn btn-light " type="button" id="addresult" onfocus=Result(this) value='Create Result Table'>
+
+    <input class="btn btn-light" type="button" id="addexam" onfocus=Exam(this) value='Add new exam'>
+
+</div>
+<div id="hr">
+    <hr>
+</div>
+<br>
+
+<form id='tables' action='/faculty/showtables' method="POST" style="margin-left: 47%;">
+    <input class="btn btn-outline-success" type="submit" name='tables' value='Show Tables'>
+</form>
+
+<div id='num' class="form-style-8" style='display: none;border-radius: 10px;'>
+    <input name="numbers" type='number' placeholder="How many exams u want to create">
+    <button class=" btnfos-3" onclick=function1(this)>Create</button>
 </div>
 
-<div id='add_table' style='display: none;'>
+<div id='add_table' class="form-style-8" style='display: none; border-radius: 10px;'>
     <form id="login_info" action="/faculty/createtable" method="POST">
         <div>
             <!-- <label for="id">Id/Roll_faculty</label> -->
             <input type="number" id="batch" name="batch_year" placeholder="Batch/year" required>
         </div>
-        <div>
-            <label for="sem">SEM:</label>
+        <div class="d-flex">
+            <label for="sem" style="margin-top: 5px;">SEM:</label>
 
-            <select type='number' name="sem" id="sem">
+            <select type='number' name="sem" id="sem" style="margin: -10px 0 0 5px;padding: 0;">
                 <option value=1>1</option>
                 <option value=2>2</option>
                 <option value=3>3</option>
@@ -47,27 +97,30 @@
         </div>
         <div>
             <!-- <label for="id">Id/Roll_faculty</label> -->
-            <input type="text" id="code" name="code" placeholder="major_code" required>
+            <input type="text" id="code" name="code" placeholder="Major Code" required>
         </div>
-        <div>
-            <label for="branch">Branch:</label>
-            <select name="branch" id="branch">
+        <div class="d-flex justify-content-md-end">
+            <label for="branch" style="margin-top: 5px;">Branch:</label>
+            <select name="branch" id="branch" style="margin: -10px 0 0 5px;padding: 0;">
                 <option value="CSE">CSE</option>
                 <option value="ECE">ECE</option>
                 <option value="CSE_ECE">Both</option>
             </select>
 
         </div>
-        <button value="add" name="create">Create</button>
+        <br>
+
+        <button class=" btnfos-3" value="add" name="create">Create</button>
+
     </form>
 </div>
-<div id='add_col' style='display: none;'>
+<div id='add_col' class="form-style-8" style='display: none; border-radius: 10px;'>
     <form id="login_info" action="/faculty/updatetable" method="POST">
         <div>
             <input type="number" id="batch" name="batch_year" placeholder="Batch/year" required>
         </div>
-        <div>
-            <label for="sem">SEM:</label>
+        <div class="d-flex justify-content-md-end">
+            <label for="sem" style="margin-top: 15px;">SEM:</label>
 
             <select type='number' name="sem" id="sem">
                 <option value=1>1</option>
@@ -82,10 +135,10 @@
         </div>
         <div>
             <!-- <label for="id">Id/Roll_faculty</label> -->
-            <input type="text" id="code" name="code" placeholder="major_code" required>
+            <input type="text" id="code" name="code" placeholder="Major Code" required>
         </div>
-        <div>
-            <label for="branch">Branch:</label>
+        <div class="d-flex justify-content-md-end">
+            <label for="branch" style="margin-top: 15px;">Branch:</label>
             <select name="branch" id="branch">
                 <option value="CSE">CSE</option>
                 <option value="ECE">ECE</option>
@@ -94,16 +147,18 @@
 
         </div>
         <div id='column'>
-            <label for="col">Column:</label>
-            <input type="text" id="col" name="col" placeholder="Exam name" required>
-            <select name="type" id="type">
-                <option value="double">Marks</option>
-                <option value="varchar(10)">Grade</option>
-            </select>
-
+            <div class="d-flex justify-content-md-end">
+                <label for="col" style="margin-top: 15px;">Column:</label>
+                <input type="text" id="col" name="col" placeholder="Exam name" required>
+                <select name="type" id="type">
+                    <option value="double">Marks</option>
+                    <option value="varchar(10)">Grade</option>
+                </select>
+            </div>
+            <br>
         </div>
 
-        <button value="add" name="update">Create</button>
+        <button class=" btnfos-3" value="add" name="update">Create</button>
     </form>
 </div>
 

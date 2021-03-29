@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <th>Major</th>
+        <th>Marks</th>
+    </tr>
+    <% for(var key in result[0]) {%>
+        <% if(key!="roll"){ %> 
+        <tr>
+            <td><%=key%> </td>
+            <td><%=result[0][key]%></td>
+        </tr>
+        <% } %> 
+        <% } %>  
+    
+</table>

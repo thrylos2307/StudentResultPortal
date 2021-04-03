@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="/css/change_pass.css"/>
+
+<div class="body-a">
+    <form method="POST" action="/users/update_pass">
+        <label>Enter old password</label>
+        <input type="password" autocomplete="off" required onfocus="show(0)" onfocusout="dontShow(0)" name="old_pass" placeholder="Enter old password">
+      <label>Enter new password</label>
+        <input type="password" autocomplete="off" required onfocus="show(1)" onfocusout="dontShow(1)" name="new_pass" placeholder="Enter new password">
+      <label>Re-enter new password</label>
+        <input type="password" autocomplete="off" required onfocusout="dontShow(2)" onfocus="show(2)" name="confirm_new_pass" placeholder="Re-enter new password">
+      <button type="submit">Change Password</button>
+    </form>
+</div>
+<script>
+    let label = document.getElementsByTagName("label");
+    function show(i) {
+        label[i].style.display = "inline";
+    }
+    function dontShow(i) {
+        label[i].style.display = "none";
+    }
+</script>

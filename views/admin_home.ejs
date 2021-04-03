@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="/css/elections.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid ">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <a href="/users/change_pass"><button class="btn btn-outline-dark" href="#" tabindex="-1" aria-disabled="true">Change Password</button></a>
+        <a href="/users/logout"><button class="btn btn-outline-dark ms-1">Logout</button></a>
+    </div>
+  </nav>
+<div class="body-a">
+    <ul class="elections">
+        <% for(var i = 0; i < elections.length; i++) { %>
+        <a href="/admin/get_election_info?election_id=<%= elections[i]._id %>" id="<%= elections[i]._id %>-e">
+            <li class="election">
+                <p><%= elections[i].name %></p>
+                <p style="font-size: 20px;" id="<%= elections[i]._id %>"></p>
+            </li></a>
+        <% } %>
+    </ul>
+    <form class="form-a" action='/admin/create_new_election' method='POST'>
+        <input name="elect_name" type="text" style="box-shadow: 0px 2px 2px 0px black;" placeholder="Enter name of election">
+        <input type="submit" style="box-shadow: 0px 2px 2px 0px black; width : 100px;" value="proceed">
+    </form>
+</div>
+<script>
+    var elections = '<%- JSON.stringify(elections) %>';
+    elections = JSON.parse(elections);
+    for(let i = 0; i < elections.length; i++) {
+            let eId = document.getElementById(elections[i]._id + "-e");
+            const diffTime = new Date(elections[i].scheduleTime) - new Date();
+            if(diffTime < 0) {
+                eId.style.display = 'none';
+            }
+    }
+    const val = 'Starts In : ';
+    setInterval(() => {
+        for(let i = 0; i < elections.length; i++) {
+            let eId = document.getElementById(elections[i]._id);
+            const diffTime = new Date(elections[i].scheduleTime) - new Date();
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffHrs =  Math.floor(diffTime / (1000 * 60 * 60) - (diffDays * 24));
+            const diffMins = Math.floor(diffTime / (1000 * 60) - diffHrs * 60 - (diffDays * 24 * 60));
+            const diffSecs = Math.floor(diffTime / (1000) - diffMins * 60 - diffHrs * 60 * 60 - (diffDays * 24 * 60 * 60));
+            eId.innerHTML = val + diffDays + 'd ' + diffHrs + 'h '+ diffMins + 'm '+ diffSecs + 's';
+        }
+    }, 1000);
+</script>

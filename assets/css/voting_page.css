@@ -1,0 +1,12 @@
+.positions {
+    display: flex;
+    flex-direction: column;
+}
+select{
+    height : 40px;
+}
+.position-h {
+
+    margin : 0px;
+    padding : 0px;
+}

@@ -1,0 +1,62 @@
+body-a{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+  }
+  * {
+    border : none; 
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 300px;
+    height: 500px;
+    margin: auto;
+  }
+  input {
+    height : 40px;
+    border-bottom: 1px solid;
+    margin-bottom: 5px;
+  }
+  input:focus {
+    outline: none;
+  }
+  label {
+    margin-top : 10px;
+    padding : 0px;
+    display : none;
+  }
+  button{
+   width: 130px;
+   height: 35px;
+   margin-left : 5px;
+    background-color: rgb(16, 30, 190);
+    color : white;
+    font-weight: bold;
+    margin : 0px auto;
+    border-radius : 3px;
+    cursor: pointer;
+    boxing : border-box;
+    margin-top: 5px;
+  }
+  button:hover {
+    width : 140px;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(16, 30, 190);
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(16, 30, 190);
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(16, 30, 190);
+  }
+  input:focus::placeholder {
+    color: transparent;
+  }

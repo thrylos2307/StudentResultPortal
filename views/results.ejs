@@ -1,0 +1,68 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<link rel="stylesheet" type="text/css" href="/css/stage1.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid ">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <a href="/users/change_pass"><button class="btn btn-outline-dark" href="#" tabindex="-1" aria-disabled="true">Change Password</button></a>
+        <a href="/users/logout"><button class="btn btn-outline-dark ms-1">Logout</button></a>
+    </div>
+  </nav>
+<div class="container" >
+<% for(var i = 0; i < data.length; i++) {%>
+    <div class="graph" style="margin : auto; width : 350px; height : 360px;">
+        <canvas style="margin : 10px;" height="100" width="100" id="myChart-<%= i %>"></canvas>
+    </div>
+<% } %>
+</div>
+<script>
+    
+    console.log('hello');
+    let data = JSON.parse('<%- JSON.stringify(data)%>');
+    // data = JSON.parse(JSON.stringify(data));
+    console.log(data.length);
+    for(var i = 0; i < data.length; i++){
+        var ctx = document.getElementById("myChart-" + i).getContext('2d');
+        new Chart(ctx, {
+            type : 'pie',
+            data : {
+                datasets : [{
+                    data : data[i].labels,
+                    backgroundColor : [
+                        "#f38b4a",
+                        "#56d798",
+                        "#ff8397"
+                    ],
+                    hoverBackgroundColor: [
+                        "#f38b4a",
+                        "#56d798",
+                        "#ff8397"
+                    ],
+                    borderColor : [
+                        "#f38b4a",
+                        "#56d798",
+                        "#ff8397"
+                    ]
+                }],
+                labels : data[i].datasets[0].data
+            },
+            options: {
+                animation: {
+                    onProgress: function(animation) {
+                        animation.animateRotate = true
+                    }
+                },
+                title: {
+                    display: true,
+                    fontColor : 'whitesmoke',
+                    fontSize : 14,
+                    padding : '10',
+                    fontStyle : 'bold',
+                    text: data[i].datasets[0].label
+                }
+            }
+        });
+    }
+</script>

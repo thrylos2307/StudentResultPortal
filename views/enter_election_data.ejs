@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="/css/positions.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid ">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <a href="/users/change_pass"><button class="btn btn-outline-dark" href="#" tabindex="-1" aria-disabled="true">Change Password</button></a>
+        <a href="/users/logout"><button class="btn btn-outline-dark ms-1">Logout</button></a>
+    </div>
+  </nav>
+<div class="body" style="display: flex; flex-direction: column; justify-content: start; padding-top: 10px;">
+    <div class="positions">
+        <% if(positions != undefined && positions[0] != null) {%>
+        <% console.log(positions.length) %>
+        <% for(var i = 0; i < positions.length; i++) {%>
+        <div class="position">
+            <p class="position-h"><%= positions[i].name %><a href="/admin/remove_position?e_id=<%= id%>&p_id=<%=positions[i]._id%>"><i class="fa fa-trash remove-position" style="float: right; margin: 5px; font-size: 20px;"></i></a></p>
+            <div class="candidates">
+                <% for(var j = 0; j < positions[i].candidate.length; j++) {%>
+                <% if(positions[i].candidate[j]) {%>
+                <div class="candidate">
+                    <p class="can-name"><%= positions[i].candidate[j].name %></p>
+                    <a href="/admin/remove_candidate?e_id=<%= id%>&p_id=<%=positions[i]._id%>&c_id=<%= positions[i].candidate[j]._id %>"><i class="fa fa-trash remove-candidate"></i></a>
+                </div>
+                <% } %>
+                <% } %>
+                <form class="candidate" method="POST" action="/admin/create_new_candidate">
+                    <input value="<%= id%>" style="display: none;" name="e_id">
+                    <input value="<%=positions[i]._id%>" style="display: none;" name="p_id">
+                    <input type="text" class="can-name" name="cand_roll_no" placeholder="New candidate" onfocus="this.placeholder = ''" onblur="this.placeholder = 'New candidate'" required>
+                    <button type="submit" style="border: none; background-color: transparent; cursor: pointer;"><i class="fa fa-plus add-candidate"></i></button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+        <% } %>
+    </div>
+    <div>
+        <form class="form-a" action='/admin/create_new_position' method="POST">
+            <input value="<%= id %>" name="elect_id" style="display: none;">
+            <input name="position_name" type="text" style="box-shadow: 0px 2px 2px 0px black;" placeholder="Enter new position name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter new position name'" required>
+            <input type="submit" style="box-shadow: 0px 2px 2px 0px black; width : 100px; background-color: rgb(4, 4, 100); color:yellow; font-weight: bolder;" value="Add position">
+        </form>
+    </div>
+    <form class="scdle-time" action='/admin/update_election_time' method="POST">
+        <input value="<%= id%>" style="display: none;" name="e_id">
+        <label>Scheduled Date</label>
+        <input type="Date" placeholder="Start date" name="date" required>
+        <label>Scheduled Time</label>
+        <input type="time" placeholder="Start time" name="time" required>
+        <label>Alloted Time</label>
+        <input type="time" placeholder="Total alloted time" name="eTime" required>
+        <button type="submit" style="height: 30px; width : 100px; margin: 5px;">Save</button>
+    </form>
+    <button onclick="show()" id="edt-dtl" style="height: 35px; width : 120px; margin: 5px; cursor: pointer; background-color: rgb(4, 4, 100); color: yellow; font-weight: bolder; font-size: 17px;">Edit schedule</button>
+</div>
+<script src="/js/enter_election_data.js"></script>
+<script src="/js/toggle_candidate.js"></script>

@@ -1,0 +1,244 @@
+*{
+    margin: 0px;
+    padding:  0px;
+}
+a { 
+    color : rgb(32, 31, 31);
+    text-decoration: none;
+    margin-top: -7px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('./images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    top: 0;
+    left: 0;
+    /* background: linear-gradient(#e66465, #9198e5); */
+}
+
+.positions {
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    grid-gap: 15px;
+    width : 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    justify-content: center;
+    height: auto;
+    max-height : 70vh;
+    padding : 5px;
+    box-sizing: border-box;
+    margin:30px 0px;
+}
+
+.position {
+    box-shadow: 0px 1px 1px 0px black;
+    background-color: white;
+    background-color: rgb(223, 220, 185);
+    border-radius: 5px 5px 0px 0px;
+    height : auto;
+}
+
+.position:hover{
+    box-shadow : 1px 2px 2px -1px white;
+}
+.position-h {
+    font-weight: bolder;
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: center;
+    background-color: rgb(5, 53, 98);
+    margin-top:0px;
+    height : 30px;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0px 0px;
+}
+.candidates {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 5px 0px 15px 0px;
+}
+.candidate {
+    display: grid; 
+    grid-template-columns: 85% 15%;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    padding: 0px;
+    margin : 5px auto;
+    padding-left: 25px;
+}
+.candidate:hover {
+    border: none !important;
+    box-shadow: none !important;
+}
+.can-name{
+    cursor: pointer;
+    color: black;
+    width : 100%;
+    height : 45px;
+    margin : 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: whitesmoke;
+    box-shadow: 1px 2px 2px -1px rgb(5, 53, 98);
+}
+
+.add-candidate {
+    font-weight: bolder;
+    font-size: 20px !important;
+    padding-top: 4px;
+    border-radius: 10%;
+    background-color: transparent;
+}
+
+.remove-candidate {
+    width : 90%;
+    height : 86%;
+    box-sizing: border-box;
+    font-size: 20px !important;
+    padding-top: 15px;
+    cursor: pointer;
+    font-size: 25px !important;
+}
+
+.remove-candidate:hover {
+    color : red;
+}
+.remove-position {
+    color : yellow;
+    cursor: pointer;
+}
+.remove-position:hover {
+    color : white;
+}
+
+
+.candidate:hover{
+    box-shadow: 1px 3px 3px -1px black;
+    border: 1px solid black;
+}
+
+
+.scdle-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: auto;
+    background-color: whitesmoke;
+    margin: 5px;
+    color: white;
+    background-color: rgb(5, 53, 98);
+    padding-top: 3px;
+    box-sizing: border-box;
+    display: none;
+}
+.form-a {
+    width :380px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: 250px 100px;
+    grid-template-rows: 40px;
+    grid-gap : 5px;
+    justify-items: center;
+}
+.form-a > input{
+    width : 100%;
+}
+
+input {
+    border: none;
+    padding-left: 5px;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
+input:focus{
+    outline : none;
+    text-decoration: none;
+    border: none;
+    
+}
+.scdle-time input {
+    width: 100%;
+    height: 40px;
+    margin : 3px;
+    margin-bottom: 7px;
+}
+.scdle-time input:focus{
+    border: none;
+    border-radius: 0px;
+    outline: none;
+}
+.scdle-time label {
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: left;
+    width: 100%;
+}
+
+.scdle-time button {
+    background-color: rgb(9, 9, 90);
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+    
+}
+
+.scdle-time button:hover {
+    box-shadow: 1px 1px 0px 0px white;
+}
+@media only screen and (max-width: 1400px) {
+    .positions {
+        grid-template-columns: 300px 300px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .positions {
+        grid-template-columns: 450px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .positions {
+        grid-template-columns: 420px;
+    }
+}
+::-webkit-scrollbar { 
+    display: none; 
+}

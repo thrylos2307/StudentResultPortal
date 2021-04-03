@@ -1,0 +1,91 @@
+<link rel="stylesheet" type="text/css" href="/css/elections.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid ">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <a href="/users/change_pass"><button class="btn btn-outline-dark" href="#" tabindex="-1" aria-disabled="true">Change Password</button></a>
+        <a href="/users/logout"><button class="btn btn-outline-dark ms-1">Logout</button></a>
+    </div>
+  </nav>
+<div class="body-a">
+    <ul class="elections">
+        <% for(var i = 0; i < elections.length; i++) { %>
+        <a id="<%= elections[i]._id%>-e">
+        <li class="election">
+            <p><%= elections[i].name %></p>            
+            <p id="<%= elections[i]._id%>" style="font-size: 20px; margin-top : 100px;"></p>
+        </li></a>
+        <% } %>
+    </ul>
+</div>
+<script>
+    var elections = '<%- JSON.stringify(elections) %>';
+    elections = JSON.parse(elections);
+    const elect = document.getElementsByClassName('election');
+    //do not show once election has ended
+    // for(let i = 0; i < elections.length; i++) {
+    //         let eId = document.getElementById(elections[i]._id + "-e");
+    //         let rId = document.getElementById(elections[i]._id);
+    //         const diffTime = new Date(elections[i].endTime) - new Date();
+    //         if(diffTime < 0) {
+    //             // eId.style.display = 'none';
+    //             rId.style.display = 'none';
+    //             let a = elect[i].appendChild('a');
+    //             a.href = "/result?e_id="+elections[i]._id;
+    //             let ba = a.appendChild('button');
+    //             ba.innerHTML = 'See Results>>';
+    //             eId.href = '';
+    //             ba.style.height = '35px';
+    //             ba.style.width = '100px';
+    //             ba.style.backgroundColor = 'blue';
+    //             ba.style.border = 'none';
+    //             ba.style.color = 'white';
+    //             ba.style.fontSize = '20px';
+    //             ba.style.fontWeight = 'bold';
+    //         }
+    // }
+    //change start time dynamically
+    const val = 'Starts In : ';
+    setInterval(() => {
+        for(let i = 0; i < elections.length; i++) {
+            let eId = document.getElementById(elections[i]._id);
+            let diffTime = new Date(elections[i].scheduleTime) - new Date();
+            let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            let diffHrs =  Math.floor(diffTime / (1000 * 60 * 60) - (diffDays * 24));
+            let diffMins = Math.floor(diffTime / (1000 * 60) - diffHrs * 60 - (diffDays * 24 * 60));
+            let diffSecs = Math.floor(diffTime / (1000) - diffMins * 60 - diffHrs * 60 * 60 - (diffDays * 24 * 60 * 60));
+            console.log(diffTime);
+            if(diffTime >= 0) {
+                eId.innerHTML = val + diffDays + 'd ' + diffHrs + 'h '+ diffMins + 'm '+ diffSecs + 's';
+            }else {
+                eId.style.display = 'none';
+                let ediffTime = new Date(elections[i].endTime) - new Date();
+                eId = document.getElementById(elections[i]._id + "-e");
+                if(ediffTime < 0) {
+                    // eId.style.display = 'none';
+                    if(elect[i].childElementCount <= 2){
+                        let a = elect[i].appendChild(document.createElement('a'));
+                        a.href = "/result?e_id="+elections[i]._id;
+                        let ba = elect[i].getElementsByTagName('a')[0].appendChild(document.createElement('button'));
+                        ba.innerHTML = 'See Result';
+                        eId.href = '#';
+                        ba.style.height = '35px';
+                        ba.style.width = 'auto';
+                        ba.style.backgroundColor = 'blue';
+                        ba.style.border = 'none';
+                        ba.style.color = 'white';
+                        ba.style.fontSize = '20px';
+                        ba.style.fontWeight = 'bold';
+                        ba.style.marginTop = '100px';
+                    }
+                }else {
+                   const l1 = '/vote/page?election_id=' +elections[i]._id;
+                   eId.href = l1;
+                }
+            }
+            
+        }
+    }, 1000);
+</script>

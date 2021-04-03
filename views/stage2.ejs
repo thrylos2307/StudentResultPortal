@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="/css/stage2.css"/>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <i class="fa fa-user" style="font-size: 55px; color: grey"></i>
+    <!-- <h3 style="color: grey">admin portal</h3> -->
+    <!-- Login Form -->
+    <form style="padding-top: 10px;" action="/verify/stage2" method="POST">
+      <input type="text" id="login" required class="fadeIn second" style="width: 90%" name="id" placeholder="Enter Your User-Id" autocomplete="off">
+      <div style="width: 90%;  margin :auto; padding:0px; display: flex; flex-direction: row; justify-content: center;border-radius: 5px;; align-items: center; background-color: rgb(232, 240, 254) !important">
+        <input type="password" id="password" minlength="8" pattern=".{8,}" required class="fadeIn third" name="password" style="margin: 0px; width: 90%" placeholder="Enter password of min length 8" autocomplete="off">
+        <i class="fa fa-eye" id="toggle-password" style="width: 10%" aria-label="Show password as plain text. Warning: this will display your password on the screen."></i>
+      </div>
+      <input type="submit" class="fadeIn fourth" value="Login">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="/users/forget_password">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+<script>
+const passwordInput = document.getElementById('password');
+const togglePasswordButton = document.getElementById('toggle-password');
+
+togglePasswordButton.addEventListener('click', togglePassword);
+
+function togglePassword() {
+if (passwordInput.type === 'password') {
+  passwordInput.type = 'text';
+  togglePasswordButton.classList.replace("fa-eye", "fa-eye-slash");
+  togglePasswordButton.setAttribute('aria-label',
+    'Hide password.');
+} else {
+  passwordInput.type = 'password';
+  togglePasswordButton.classList.replace("fa-eye-slash", "fa-eye");
+  togglePasswordButton.setAttribute('aria-label',
+    'Show password as plain text. ' +
+    'Warning: this will display your password on the screen.');
+}
+}
+</script>

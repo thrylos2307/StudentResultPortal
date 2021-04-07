@@ -6,7 +6,6 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const  passport = require('passport');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
-
 const MongoStore = require('connect-mongo')(session);
 app.set('view engine', 'ejs');
 app.use(express.static('assets'));

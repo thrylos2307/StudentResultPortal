@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="/css/create_user.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="card">
+    <h1>Create User</h1>
+    <form action="/create" method="post">
+        <label>E-mail address</label>
+        <input type="email" name="email" data-validate="required email"/>
+        <label>Name</label>
+        <input type="text" data-validate="required" name="name" />
+        <label>Roll No</label>
+        <input type="number" data-validate="required" name="uid" />
+        <input data-validate="required" name="isVoter" style="display:none;" value="true" />
+        <label>Password</label>
+        <input type="password" data-validate="required" name="password" name="password" placeholder="min length must be 8" minlength="8" pattern=".{8,}"/>
+        <input type="submit" name="submit" value="Create"/>
+    </form>
+</div>
+<h3>OR</h3>
+<form action="/upload" method="post" enctype="multipart/form-data" style="width:200px; margin: auto;">
+    <input name="file"  type="file" required >
+    <input type="submit" value="submit" style="margin: 10px auto; height: 40px; width : 180px; cursor : pointer; border: none; background-color: rgb(6, 6, 66); color : white; font-size : 15px; font-weight : bold;">
+</form>
+<script>
+    /**
+* Uses my experimental, modular and far from ready JavaScript framework :)
+*/
+
+    //select the modules to use
+    I.use('core');
+    I.use('validation');
+    I.use('events');
+    I.use('selectors');
+
+    //wait for all the modules to be loaded
+    I.go(function () {
+        I.bind('change keyup blur focus').to('input', function (e) {
+            if (I.am.valid(e)) {
+                e.srcElement.className = 'valid';
+            } else if (e.type === 'blur') {
+                e.srcElement.className = 'error';
+            } else if (I.am.empty(e.srcElement.value)) {
+                e.srcElement.className = 'warning';
+            } else {
+                e.srcElement.className = '';
+            }
+        });
+
+        I.bind('click').to('input[type="submit"]', function (e) {
+            var inputs = I.select('input');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].focus();
+            }
+            if (I.select('input.error').length) {
+                e.preventDefault();
+            }
+            //always nu-uh submit on codepen ;)
+            e.preventDefault();
+        });
+    });
+</script>

@@ -1,0 +1,99 @@
+* {
+    font-size: 14px;
+  }
+  body {
+    background-color: #eee;
+    margin-top: 50px;
+    font-family: Verdana;
+  }
+  div.card {
+    margin: auto;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0px 3px 3px silver;
+    padding: 25px;
+  }
+  div.card h1 {
+    margin: 0 0 20px 0;
+    font-weight: normal;
+    color: #03a9f4;
+    font-size: 30px;
+  }
+  div.card label {
+    float: left;
+    padding: 10px 10px 14px 0;
+    width: 175px;
+    margin-top: 10px;
+    clear: left;
+  }
+  div.card input {
+    float: right;
+    border: 2px solid silver;
+    padding: 8px 0;
+    border-width: 0 0 2px 0;
+    width: 200px;
+    margin-top: 15px;
+    transition: border-color 0.3s;
+  }
+  div.card input:focus,
+  div.card input:hover {
+    border-color: #03a9f4;
+    outline: 0;
+  }
+  div.card input.warning {
+    border-color: #ff9800;
+  }
+  div.card input.error {
+    border-color: #f44336;
+  }
+  div.card input.valid {
+    border-color: #4caf50;
+  }
+  div.card input[type=submit] {
+    border: 0;
+    background-color: white;
+    color: #03a9f4;
+    text-transform: uppercase;
+    width: auto;
+    cursor: pointer;
+  }
+  h3 {
+      text-align: center;
+      font-size: 35px;
+  }
+
+  i.fa.fa-upload {
+    margin: auto;
+    font-size: 80px;
+    color:rgb(61, 56, 56);
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.custom-file-input {
+    color: transparent;
+  }
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    content: 'Select some files';
+    color: black;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  
+

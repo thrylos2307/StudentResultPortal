@@ -4,26 +4,25 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="wrapper fadeInDown">
-  <div id="formContent">
+<div class="wrapper fadeInDown" style="opacity: 0.9; ">
+  <div id="formContent" style="background-color: #9da5aa;">
     <!-- Tabs Titles -->
-    <i class="fa fa-user" style="font-size: 55px; color: grey"></i>
+    <i class="fa fa-user" style="font-size: 65px; color: black;  margin-top: 10px;"></i>
     <!-- <h3 style="color: grey">admin portal</h3> -->
     <!-- Login Form -->
-    <form style="padding-top: 10px;" action="/verify/stage2" method="POST">
-      <input type="text" id="login" required class="fadeIn second" style="width: 90%" name="id" placeholder="Enter Your User-Id" autocomplete="off">
-      <div style="width: 90%;  margin :auto; padding:0px; display: flex; flex-direction: row; justify-content: center;border-radius: 5px;; align-items: center; background-color: rgb(232, 240, 254) !important">
-        <input type="password" id="password" minlength="8" pattern=".{8,}" required class="fadeIn third" name="password" style="margin: 0px; width: 90%" placeholder="Enter password of min length 8" autocomplete="off">
+    <form style="padding-top: 10px;" action="/verify/stage2" method="POST" >
+      <input type="text" id="login" required class="fadeIn second" style="width: 85%" name="id" placeholder="Enter Your User-Id" autocomplete="off">
+      <div style="width: 85%;  margin :auto; padding:0px; display: flex; flex-direction: row; justify-content: center;border-radius: 5px;; align-items: center; background-color: rgb(232, 240, 254) !important">
+        <input type="password" onkeyup="checkPass()" id="password" minlength="8" pattern=".{8,}" required class="fadeIn third" name="password" style="margin: 0px; width: 90%" placeholder="Enter password of min length 8" autocomplete="off">
         <i class="fa fa-eye" id="toggle-password" style="width: 10%" aria-label="Show password as plain text. Warning: this will display your password on the screen."></i>
-      </div>
-      <input type="submit" class="fadeIn fourth" value="Login">
+      </div><br>
+      <input type="submit" class="fadeIn fourth" value="Login" style="background-color: #283437; cursor: pointer;">
     </form>
 
     <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="/users/forget_password">Forgot Password?</a>
+    <div id="formFooter" style="background-color:black">
+      <a class="underlineHover" href="/users/forget_password" style="color: rgb(74, 148, 71); text-decoration: none;">Forgot Password?</a>
     </div>
-
   </div>
 </div>
 <script>
@@ -46,4 +45,26 @@ if (passwordInput.type === 'password') {
     'Warning: this will display your password on the screen.');
 }
 }
+function checkPass() {
+  console.log('hello')
+  // this.style.backgroundColor = 'red';
+  const password = document.getElementById('password');
+  
+  if(password.value.length < 8) {
+    password.style.backgroundColor = 'red';
+  }  else {
+    password.style.backgroundColor = 'green';
+  }
+  if(password.value.length === 0){
+    password.style.backgroundColor = 'white';
+  }
+}
+function preventBack() {
+        window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+    window.onunload = function() {
+        null
+    };
 </script>

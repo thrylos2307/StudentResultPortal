@@ -5,8 +5,8 @@
     <div class="container-fluid ">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         </ul>
-        <a href="/users/change_pass"><button class="btn btn-outline-dark" href="#" tabindex="-1" aria-disabled="true">Change Password</button></a>
         <a href="/users/logout"><button class="btn btn-outline-dark ms-1">Logout</button></a>
+        <a href="/users/change_pass"><button class="btn btn-outline-dark" href="#" tabindex="-1" aria-disabled="true">Change Password</button></a>
     </div>
   </nav>
 <div class="body-a">
@@ -70,7 +70,7 @@
                         a.href = "/result?e_id="+elections[i]._id;
                         let ba = elect[i].getElementsByTagName('a')[0].appendChild(document.createElement('button'));
                         ba.innerHTML = 'See Result';
-                        eId.href = '#';
+                        eId.href = '';
                         ba.style.height = '35px';
                         ba.style.width = 'auto';
                         ba.style.backgroundColor = 'blue';

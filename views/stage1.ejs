@@ -1,4 +1,17 @@
 <link rel="stylesheet" type="text/css" href="/css/stage1.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="body">
 <a href="/users/auth"><button class="Button_gmail">Gmail Auth</button></a>
 </div>
+<script>
+    function preventBack() {
+        window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+    window.onunload = function() {
+        null
+    };
+</script>

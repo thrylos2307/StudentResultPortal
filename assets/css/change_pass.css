@@ -2,7 +2,8 @@ body-a{
     width: 100vw;
     height: 100vh;
     display: flex;
-    align-content: center;
+    align-items: center;
+    
   }
   * {
     border : none; 
@@ -12,22 +13,30 @@ body-a{
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    width: 300px;
+    width: 350px;
     height: 500px;
     margin: auto;
   }
   input {
-    height : 40px;
+    height : 45px;
     border-bottom: 1px solid;
     margin-bottom: 5px;
+    /* -webkit-box-shadow: 0 0 1px 3px blue inset;
+    -moz-box-shadow: 0 0 1px 3px blue inset;
+    box-shadow: 0px 0 2px 3px blue inset; */
+    border-radius : 10px;
+    padding : 5px;
   }
   input:focus {
     outline: none;
   }
   label {
-    margin-top : 10px;
+    margin-bottom : 10px;
     padding : 0px;
     display : none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
   }
   button{
    width: 130px;

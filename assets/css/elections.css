@@ -5,14 +5,14 @@
     grid-template-rows: 70% 30%;
     justify-items: center;
     align-content: center;
-    background: url('./images/background.jpg') no-repeat center center fixed; 
+    background: url('../images/background.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .elections, .positions {
     display: grid;
@@ -36,7 +36,6 @@ a {
     justify-content: center;
     flex-direction: column;
     cursor : pointer;
-    border-radius: 5px;
     background-color: #17084e;
     font-size: 28px;
     font-weight: bold;
@@ -53,12 +52,14 @@ a {
     margin: 0px auto;
     display: grid;
     grid-template-columns: 250px 100px;
-    grid-template-rows: 40px;
-    grid-gap : 5px;
+    grid-template-rows: 45px;
     justify-items: center;
 }
 .form-a > input{
     width : 100%;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
 }
 
 .form-a > input:focus{
@@ -66,7 +67,9 @@ a {
     text-decoration: none;
     border: none;
 }
-
+input:focus::placeholder {
+    color: transparent;
+}
 @media only screen and (max-width: 1200px) {
     .elections, .positions {
         grid-template-columns: 280px 280px 280px;

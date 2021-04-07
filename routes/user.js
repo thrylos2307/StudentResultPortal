@@ -11,7 +11,7 @@ router.get('/logout', (req, res) => {
   req.logout();
   req.session.uid = undefined;
   req.session.user_position = undefined;
-  res.redirect('/');
+  res.render('stage1');
 });
 router.get('/auth', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }), (req, res) => {
@@ -21,10 +21,12 @@ router.get('/change_pass', authenticated.checkLoggedIn, authenticated.stage2, (r
   return res.render('change_pass');
 });
 router.post('/update_pass', authenticated.checkLoggedIn, authenticated.stage2, async (req, res) => {
-  const oPass = req.body.old_pass;
-  const nPass = req.body.new_pass;
-  console.log(req.user);
-  const cnPass = req.body.confirm_new_pass;
+  const oPass = req.body.old_pass.trim();
+  const nPass = req.body.new_pass.trim();
+  if(oPass.length < 8 || nPass.length < 8){
+    return res.redirect('/home');
+  }
+  const cnPass = req.body.confirm_new_pass.trim();
   const pMatch = await bcrypt.compare(oPass, req.user.password);
   if (nPass !== cnPass) {
     console.log('not matching')
@@ -43,7 +45,9 @@ router.post('/update_pass', authenticated.checkLoggedIn, authenticated.stage2, a
 router.get('/forget_password', authenticated.checkLoggedIn, async (req, res) => {
   return res.render('input_id');
 });
-
+router.get('/create', authenticated.checkAdminLoggedIn, authenticated.stage2, (req, res) => {
+  return res.render('create_user');
+})
 router.post('/forget_password', authenticated.checkLoggedIn, async (req, res) => {
   let done = false;
   await f_user.findOne({userId : req.user._id}, (err, data) => {
@@ -54,8 +58,7 @@ router.post('/forget_password', authenticated.checkLoggedIn, async (req, res) =>
   if(done){
     await f_user.deleteOne({userId : req.user._id});
   }
-  console.log(req.user.uid, req.body.uid);
-  if (req.user.uid == req.body.uid) {
+  if (req.body.uid && req.user.uid == req.body.uid) {
     const otp = Math.floor(Math.random() * 99999) + "";
     var mailOptions = {
       from: 'testcodeial@gmail.com',
@@ -84,21 +87,26 @@ router.post('/forget_password', authenticated.checkLoggedIn, async (req, res) =>
   }
 });
 router.post('/f_p/otp_verify', authenticated.checkLoggedIn, (req, res) => {
+ if(req.body.otp.trim().length < 1){
+    return res.render('verify_otp');
+  } 
   f_user.findOne({userId : req.user._id}, async (err, data) => {
-    const token_match = await bcrypt.compare(req.body.otp, data.token);
+    const token_match = await bcrypt.compare(req.body.otp.trim(), data.token);
       if(token_match) {
         await f_user.deleteOne({userId : req.user._id});
         return res.render('new_pass');
       }else{
-        res.redirect('/users/forget_password');
+        res.render('verify_otp');
       }
     });
 });
 
 router.post('/f_p/change_pass',authenticated.checkLoggedIn,  async (req, res) => {
-  const new_pass = req.body.new_pass;
-  const conf_pass = req.body.confirm_pass;
-  console.log(new_pass);
+  const new_pass = req.body.new_pass.trim();
+  const conf_pass = req.body.confirm_pass.trim();
+  if(new_pass.length < 8 || conf_pass.length < 8){
+    return res.render('new_pass');
+  }
   if(new_pass === conf_pass) {
     const encrp_pass = await bcrypt.hashSync(new_pass, saltRounds);
     await user.findByIdAndUpdate(req.user._id, {password : encrp_pass}, (err, done) => {

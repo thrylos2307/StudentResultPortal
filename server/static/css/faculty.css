@@ -5,6 +5,7 @@ body {
   }
 .container-fluid h1,h3{
     margin-left: 70%;
+    margin-top: 20px;
 }
 .container-fluid h1{
     font-family: 'Train One', cursive;
@@ -17,6 +18,21 @@ body {
     border-top: 1px dashed #e0dbd1;
     margin-left: 5%;
     margin-right: 5%;
+}
+.left{
+    
+    margin:5% 0 0 10%;
+    position:fixed;
+}
+.left i{
+    
+    font-size: larger;
+    color:whitesmoke;
+}
+.left i:hover{
+
+    position: fixed;
+    font-size: 30px;
 }
 .d-flex input{
     width: 170px;

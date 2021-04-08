@@ -1,15 +1,25 @@
-<table>
-    <tr>
-        <th>Major</th>
-        <th>Marks</th>
-    </tr>
-    <% for(var key in result[0]) {%>
-        <% if(key!="roll"){ %> 
-        <tr>
-            <td><%=key%> </td>
-            <td><%=result[0][key]%></td>
-        </tr>
-        <% } %> 
-        <% } %>  
-    
-</table>
+<link rel="stylesheet" href="/css/student.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<div style="margin-left:25%; margin-top: 10%; margin-right: 10%;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Major</th>
+                <th scope="col">Marks</th>
+            </tr>
+        </thead>
+        <% for(var key in result[0]) {%>
+            <% if(key!="roll" ){ %>
+                <tr>
+                    <td>
+                        <%=key%>
+                    </td>
+                    <td>
+                        <%=result[0][key]%>
+                    </td>
+                </tr>
+                <% } %>
+                    <% } %>
+
+    </table>
+</div>

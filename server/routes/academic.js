@@ -8,4 +8,5 @@ router.post('/showtables',passport.checkAuthentication, position_Controller.show
 router.get('/results',passport.checkAuthentication, position_Controller.result);
 router.post('/update',passport.checkAuthentication, position_Controller.resupdate);
 router.get('/delete',passport.checkAuthentication, position_Controller.delete);
+router.post('/addresult',passport.checkAuthentication, position_Controller.addresult);
 module.exports = router;

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Reset Password Form In Bootstrap</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #378396;
+                font-family: Nunito Sans;
+            }
+            
+            .btn {
+                background-color: #17c0eb;
+                width: auto;
+                color: #fff;
+                padding: 10px;
+                font-size: 18px;
+            }
+
+            .btn:hover {
+                background-color: #2d3436;
+                color: #fff;
+            }
+
+            input {
+                height: 50px !important;
+            }
+
+            .form-control:focus {
+                border-color: #18dcff;
+                box-shadow: none;
+            }
+
+            h3 {
+                color: #17c0eb;
+                font-size: 36px;
+            }
+
+            .cw {
+                width: 35%;
+            }
+
+            
+        </style>
+    </head>
+
+    <body>
+        <div class="container d-flex justify-content-center align-items-center  vh-100 ">
+            <div class="bg-white text-center p-5 mt-3 center">
+                <h3>Forgot Password </h3>
+                <form class="pb-3" action="/forgot_password/otp" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="otp" placeholder="Enter the otp" required>
+                    </div>
+                   
+
+                <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -20,7 +20,7 @@ module.exports.create = function (req, res) {
             });
         }
     });
-    res.redirect('/faculty');
+    res.redirect('/login');
 }
 
 module.exports.update = function (req, res) {
@@ -65,7 +65,7 @@ module.exports.update = function (req, res) {
             });
         }
     });
-    res.render('faculty_home.ejs');
+    res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
 }
 module.exports.show = function (req, res) {
     console.log("priting=>", req.body, req.user);
@@ -97,24 +97,38 @@ module.exports.show = function (req, res) {
     }
     //select  TABLE_NAME from information_schema.Tables where TABLE_NAME REGEXP 'CSE.+[0-9]{4}$';
 }
-module.exports.result = function (req, res) {
+module.exports.result = async function (req, res) {
     console.log("priting result table name=>", req.body, req.user);
     cols = req.body;
 
     try {
         con.query(`select  *from ??`, [req.query.table], function (err, result) {
             console.log(result.length);
-            if (err)
+            if (err) {
                 console.log(err);
+            }
             else {
-                console.log(req.query.table);
-                res.render("result.ejs", { results: result, tablename: req.query.table });
+                con.query(`describe ${req.query.table}`, (err1, results1) => {
+                    if (err1)
+                        console.log(err1);
+                    else {
+                        var col = [];
+                        for (var k in results1) {
+                            col.push(results1[k].Field);
+                        }
+                        console.log(req.query.table, result);
+                        req.session.table = req.query.table;
+                        res.render("result.ejs", { results: result, cols: col, tablename: req.query.table });
+                        // console.log("describe",col);
+                    }
+                });
+
             }
         });
     }
     catch {
 
-        res.render('faculty_home.ejs');
+        res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
     }
     //select  TABLE_NAME from information_schema.Tables where TABLE_NAME REGEXP 'CSE.+[0-9]{4}$';
 }
@@ -154,7 +168,7 @@ module.exports.resupdate = function (req, res) {
                 throw err;
         });
     }
-    res.render('faculty_home.ejs');
+    res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
 }
 
 module.exports.delete = function (req, res) {
@@ -167,6 +181,7 @@ module.exports.delete = function (req, res) {
             }
             else {
                 console.log(req.query.table);
+                req.session.table = req.query.table;
                 res.redirect('/faculty/results?table=' + req.query.table);
             }
 
@@ -176,5 +191,41 @@ module.exports.delete = function (req, res) {
 
         res.redirect('/login');
     }
+
+}
+module.exports.addresult = function (req, res) {
+    console.log("updated values=>", req.session);
+    var val = [];
+    var sql = "insert into " + req.session.table + "(";
+    for (var i in req.body) {
+        sql += i + ",";
+    }
+    sql = sql.slice(0, -1) + ") values(";
+    for (var k in req.body.roll) {
+        var tmp = [];
+        for (var i in req.body) {
+            sql += req.body[i][k] + ",";
+        }
+        sql = sql.slice(0, -1) + "),(";
+    }
+    sql = sql.slice(0, -2);
+    console.log(sql);
+    // try {
+    con.query(sql, function (err, result) {
+        if (err) {
+            console.log(err, result);
+        }
+    });
+    //         else {
+    //             console.log(req.query.table);
+    //             res.redirect('/faculty/results?table=' + req.query.table);
+    //         }
+
+    //     });
+    // }
+    // catch {
+
+    res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
+
 
 }

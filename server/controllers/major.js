@@ -46,7 +46,7 @@ module.exports.b = (req, res) => {
     console.log(jsonObj);
     for (var key in jsonObj) {
       //console.log(key, 'id=',jsonObj[key].id)
-      con.query(`insert into subject_info values('${jsonObj[key].Code}','${jsonObj[key].Major}',${jsonObj[key].Faculty_id},'${jsonObj[key].FacultyName}')`, function (err, result) {
+      con.query(`insert into subject_info values('${jsonObj[key].Code}','${jsonObj[key].Major}',${jsonObj[key].Faculty_id},'${jsonObj[key].FacultyName}',${jsonObj[key].sem})`, function (err, result) {
         console.log(result);
         if (err) {
           console.log(err.sqlMessage, ' while inserted value for code=', jsonObj[key].Code);

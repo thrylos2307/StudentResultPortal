@@ -1,7 +1,7 @@
 .custom{
     width: 150px !important;
     height: 50px;
-margin-left: 40px ;
+margin-left: 40px;
 margin-bottom: 60px;
   
 }
@@ -28,6 +28,14 @@ margin-bottom: 60px;
     padding-bottom: 10px;
 
 }
+.container-fluid i{
+    color:rgba(79, 128, 69, 0.445);
+    position: fixed;
+}
+.container-fluid i:hover{
+    position: absolute;
+    font-size: 30px;
+}
 .container-fluid h1{
     font-family: 'Dancing Script', cursive;
      color: beige;
@@ -38,6 +46,10 @@ margin-bottom: 60px;
     text-align: center;
    
 }
+.container-fluid a{
+    margin-top: -20px !important;
+margin-left: 3%;
+}
 /* Add faculty  */
 body{
     background-image: url('../grass.jpg');  
@@ -45,29 +57,31 @@ body{
     background-color:#d4e2d4 ;
 }
 .di{
-    margin: 10px 40%;
+    text-align: center;
+    margin: 10px 30%;
     background-color:#5eaaa8;
     border-radius: 10px;
 
 }
 .di h1{
-    margin-left: 40%;
+   
     color: rgb(7, 49, 26);
 }
 
 .btn-light{
     padding: 1px;
     width: 60px; 
-   
 }
 
 .di .input1{
-    margin-left: 15%;
+    align-items: center;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
     border-color: azure;
 }
+
 .di .input2{
+    align-items: center;
     margin-left: 25%;
     margin-top: 10px;
 }

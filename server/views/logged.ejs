@@ -4,6 +4,9 @@
     <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
             rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+            integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="/css/logged.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -14,6 +17,7 @@
     <body>
         <div class="container-fluid">
 
+
             <br>
             <br>
             <br>
@@ -23,39 +27,30 @@
 
             <input class="btn btn-primary custom" type="button" id="addbatch" onfocus=batch(this) value='Add Batch'><br>
             <input class="btn btn-primary custom" type="button" id="addmajor" onfocus=major(this) value='Add Major'><br>
+            <a href="/cgpwd"><i class="fas fa-lock" type="button" title='Change password'
+                    style="margin-right: 20px;"></i></a>
+            <a href="/logout"><i class="fas fa-sign-out-alt" title="Logout"></i></a>
             <br>
             <br>
+
         </div>
         <div class="btn-group btn-group-justified " style="display: grid; grid-template-columns: 33.33% 33.33% 33.33%;">
-            <!-- <div>
-                <form action="/showfaculty" method="post">
-                    <button class="upload btn btn-secondary" type="submit">Show Faculty</button>
-                </form>
-            </div>
-            <div>
-                <form action="/showbatch" method="post">
-                    <button class="upload btn btn-secondary" type="submit">Show Batch</button>
-                </form>
-            </div>
-            <div>
-                <form action="/showmajor" method="post">
-                    <button class="upload btn btn-secondary" type="submit">Show Major</button>
-                </form>
-            </div> -->
             <a href="/admin/showtables?table=faculty_login" class="btn btn-primary ">Show Faculty</a>
             <a href="/admin/showtables?table=student_login" class="btn btn-primary ">Show Batch</a>
             <a href="/admin/showtables?table=subject_info" class="btn btn-primary ">Show Major</a>
         </div>
-        <div id='add_faculty' style='display: none;' class="di">
-            <input class="input1 rounded" name="numbers" type='number' placeholder="Enter number of faculty">
-            <button class="btn btn-secondary" onclick=function1(this)>Create</button>
-            <br><br><br>
-            <h1>OR</h1>
-            <br>
-            <form action="/upload_faculty" method="post" enctype="multipart/form-data">
-                <input class="input2" type="file" id="fileSelect" name="fileSelect" required />
-                <button class="upload btn btn-secondary" type="submit">Upload</button>
-            </form>
+        <div id='add_faculty' class="di" style='display: none !important;' >
+            
+                <input class="input1 rounded" name="numbers" type='number' placeholder="Enter number of faculty">
+                <button class="btn btn-secondary" onclick=function1(this)>Create</button>
+                <br><br><br>
+                <h1>OR</h1>
+                <br>
+                <form action="/upload_faculty" method="post"  enctype="multipart/form-data">
+                    <input class="input2" type="file" id="fileSelect" name="fileSelect" required />
+                    <button class="upload btn btn-secondary" type="submit">Upload</button>
+                </form>
+           
         </div>
 
         <div id='add_batch' style='display: none;' class="di">
@@ -230,7 +225,7 @@
                     </td>
                 </tr>
             </table>
-            <button value="add" name="add">Add</button>
+            <button type="submit">Add</button>
         </form>
         <script type="text/javascript" src="/js/frontend.js"></script>
 

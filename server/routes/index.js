@@ -18,8 +18,10 @@ const major=require('../controllers/major');
 const type=require('../controllers/type');
 const result=require('../controllers/result');
 
+const log=require('../controllers/login');
 router.post("/showresult",passport.checkAuthentication,result.a);
 router.post("/upload_faculty",passport.checkAuthentication,upload.single('fileSelect'),faculty.b);
+router.post("/f_upload_student",passport.checkAuthentication,upload.single('fileSelect'),faculty.c);
 router.post("/upload_student",passport.checkAuthentication,upload.single('fileSelect'),student.b);
 router.post("/upload_major",passport.checkAuthentication,upload.single('fileSelect'),major.b);
 router.all("/file_uploaded",(req,res)=>{
@@ -27,10 +29,25 @@ router.all("/file_uploaded",(req,res)=>{
    console.log(res.file);
    res.redirect("/login");
 });
-
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.session.uid = undefined;
+  req.session.user_position = undefined;
+  res.redirect('/');
+});
+router.get('/forgot_password', function (request, response) {
+  response.render('./forgot_password.ejs');
+});
 router.post("/create_faculty",passport.checkAuthentication,(req,res,next)=>{
   type.user(req,res,'Admin',next);
 },faculty.a);
+router.post('/cgpwd',log.cgpwd);
+router.post('/forgot_password/email', log.forgot);
+router.get('/changepassword',passport.checkAuthentication,(req,res)=>{
+  res.render('changp.ejs')
+});
+router.post('/forgot_password/otp', log.otp);
+router.post('/forgot_password/cp', log.cp);
 router.post("/create_student",passport.checkAuthentication,student.a);
 router.post("/create_major",passport.checkAuthentication,major.a);
 module.exports=router;

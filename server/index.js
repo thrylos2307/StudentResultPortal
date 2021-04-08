@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser=require('body-parser');
 const cors = require('cors');
 const app = express();
-const alert=require('alert');
+
 const port = 5000;
 const session = require('express-session');
 const MySQLStore=require('express-mysql-session')(session);
@@ -20,8 +20,9 @@ app.use(session({
   secret: 'secret_session',
   resave: false,
   saveUninitialized: false,
-  cookie:{maxAge:600000}
+  cookie:{maxAge:6000000}
 }));
+app.use(require('flash')());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
@@ -58,4 +59,4 @@ app.use('/',require('./routes'));
 //     if(err)console.log(err);
 //     else{res.send(result);console.log(result);}
 //   });
-// });
+// });`

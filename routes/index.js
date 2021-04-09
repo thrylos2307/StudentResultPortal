@@ -12,12 +12,14 @@ router.get('/home', authenticated.checkLoggedIn, authenticated.stage2, (req, res
     return req.user.isVoter ? res.render('voter_home') : res.redirect('/admin');
 });
 router.get('/failed', (req, res) => {
-    return res.json({
+    return res.status(401).json({
         status: 'failed'
     });
 });
 router.use('/verify', require('./verify'));
 router.use('/users', require('./user'));
+router.get('/verify_otp', authenticated.checkAdminLoggedIn, (req, res) => {return res.render('verify_otp');});
+router.get('/new_pass', authenticated.checkAdminLoggedIn, (req, res) => {return res.render('new_pass');})
 router.post('/create', authenticated.checkAdminLoggedIn, authenticated.stage2,  create_user_Controller.create);
 router.post('/upload', authenticated.checkAdminLoggedIn, authenticated.stage2, upload.single('file'), create_user_Controller.upload);
 router.use('/admin', require('./admin'));

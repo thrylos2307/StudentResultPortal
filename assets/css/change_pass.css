@@ -1,10 +1,10 @@
-body-a{
+.body-a{
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
-    
-  }
+    background-color: #030303;
+}
   * {
     border : none; 
   }
@@ -21,10 +21,11 @@ body-a{
     height : 45px;
     border-bottom: 1px solid;
     margin-bottom: 5px;
+    background-color: #292727;
     /* -webkit-box-shadow: 0 0 1px 3px blue inset;
     -moz-box-shadow: 0 0 1px 3px blue inset;
     box-shadow: 0px 0 2px 3px blue inset; */
-    border-radius : 10px;
+    border-radius : 0px;
     padding : 5px;
   }
   input:focus {
@@ -55,16 +56,16 @@ body-a{
     width : 140px;
   }
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(16, 30, 190);
+    color: white;
     opacity: 1; /* Firefox */
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: rgb(16, 30, 190);
+    color: white;
   }
   
   ::-ms-input-placeholder { /* Microsoft Edge */
-    color: rgb(16, 30, 190);
+    color: white;
   }
   input:focus::placeholder {
     color: transparent;

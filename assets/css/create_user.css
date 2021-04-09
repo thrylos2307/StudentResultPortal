@@ -1,19 +1,20 @@
+
 * {
     font-size: 14px;
   }
   body {
     background-color: #eee;
-    margin-top: 50px;
     font-family: Verdana;
   }
   div.card {
     margin: auto;
-    width: 400px;
-    height: 300px;
+    width: 450px;
+    height: 400px;
     background-color: white;
     border-radius: 2px;
     box-shadow: 0px 3px 3px silver;
     padding: 25px;
+    margin-top: 15px;
   }
   div.card h1 {
     margin: 0 0 20px 0;
@@ -96,4 +97,3 @@
     font-size: 10pt;
   }
   
-

@@ -1,16 +1,14 @@
 <link rel="stylesheet" type="text/css" href="/css/change_pass.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="body-a" style="background-color: #151B54; height: 100vh">
+<div class="body-a" style="background-color: #1b1b1b; height: 100vh;  box-sizing: border-box;">
     <form method="POST" action="/users/update_pass">
         <label>Enter old password</label>
-        <input type="password"minlength="8" pattern=".{8,}" autocomplete="off" required onfocus="show(0)" onfocusout="dontShow(0)" name="old_pass" placeholder="Enter old password">
+        <input class="shadow-lg" type="password"minlength="8" pattern=".{8,}" autocomplete="off" required onfocus="show(0)" onfocusout="dontShow(0)" name="old_pass" placeholder="Enter old password">
       <label>Enter new password</label>
         <input type="password" minlength="8" pattern=".{8,}"  id="pass" autocomplete="off" required onfocus="show(1)" onfocusout="dontShow(1)" name="new_pass" placeholder="Enter new password">
       <label>Re-enter new password</label>
-        <input type="password"  minlength="8" pattern=".{8,}" id="cpass" autocomplete="off" required onfocusout="dontShow(2)" onfocus="show(2)" name="confirm_new_pass" placeholder="Re-enter new password">
+        <input class="shadow-lg" type="password"  minlength="8" pattern=".{8,}" id="cpass" autocomplete="off" required onfocusout="dontShow(2)" onfocus="show(2)" name="confirm_new_pass" placeholder="Re-enter new password">
         <div type="text" id="match" value="password and confirm-password does not match" style="width: 100%;  font-size: 20px; font-weight: bold; text-align: center;border: none; display: none; color: white;">password and confirm-password does not match</div>
-        <button type="submit">Change Password</button>
-      
+        <button class="shadow-lg bg-dark" type="submit" class="btn btn-primary" style="width: 200px; border: none !important; height: 40px;">Change Password</button>
     </form>
 </div>
 <script>

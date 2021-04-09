@@ -55,7 +55,6 @@ router.post('/count', authenticated.checkUserLoggedIn, authenticated.stage2, asy
      });
      const data = req.body;
      for(let i = 0 ;i < election.positions.length; i++) {
-        console.log(election.positions[i]._id, data[election.positions[i]._id]);
         votes.create({
             eId : e_id,
             position: election.positions[i]._id,
@@ -65,6 +64,7 @@ router.post('/count', authenticated.checkUserLoggedIn, authenticated.stage2, asy
             if(err){console.log("unable to save data"); return;}
         });
      }
+    req.flash('success','Voted successfullt');
     console.log("vote created");
     return res.render('voted');
 });

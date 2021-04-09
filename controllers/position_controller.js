@@ -12,6 +12,7 @@ module.exports.create = function (req, res) {
                 election.positions.push(position);
                 election.save((err) => {
                     if (err) { console.log(err); return; }
+                    req.flash('success','Positon added succesfully');
                     return res.redirect('/admin/get_election_info?election_id=' + req.body.elect_id);
                 });
             });
@@ -28,6 +29,7 @@ module.exports.remove = function (req, res) {
         if(err){console.log('Unable to remove position from election', err); return;}
         Position.findByIdAndDelete(p_id, (err, done) => {
             if(err){console.log('Unable to delete position', err); return;}
+            req.flash('error','Position removed successfully');
             return res.redirect('/admin/get_election_info?election_id=' + e_id);
         });
     });

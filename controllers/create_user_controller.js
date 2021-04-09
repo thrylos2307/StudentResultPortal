@@ -6,22 +6,25 @@ var glob = require("glob");
 var fs = require('fs');
 const user = require('../models/user');
 const saltRounds = 10;
-module.exports.create = function (req, res) {
+module.exports.create = async function (req, res) {
     const password = req.body.password.trim();
-    const id = req.body.id.trim();
+    const id = req.body.uid.trim();
     const voter = req.body.isVoter.trim();
     const name = req.body.name.trim();
     const email = req.body.email.trim();
     if (password.length < 8 && email && voter && name && id) {
-        return res.json({ status: 'Error in creating user' });
+        req.flash('error','Unable to create voter!');
+        return res.redirect('back');
     }
-    var hash = bcrypt.hashSync(password, saltRounds);
+    var hash = await bcrypt.hashSync(password, saltRounds);
     User.create({ email: email, uid: id, password: hash, isVoter: voter, name: name }, (err) => {
         if (err) {
             console.log(err);
-            return res.json({ status: 'Error in creating user' });
+            req.flash('error','Unable to create voter!');
+            return res.redirect('back');
         }
-        return res.json('create_user');
+        req.flash('success','Voter created successfully');
+        return res.redirect('back');
     });
 }
 
@@ -38,6 +41,7 @@ module.exports.upload = (req, res) => {
                 if (err) {
                     console.log(err, 'error in creating user');
                 }else{
+                    req.flash('success','Voter added');
                     console.log('created');
                 }
             });
@@ -53,5 +57,5 @@ module.exports.upload = (req, res) => {
             }
         });
     });
-    return res.render('create_user');
+    return res.redirect('back');
 }

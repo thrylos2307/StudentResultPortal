@@ -13,16 +13,14 @@ a {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
-    background: url('../images/background.jpg') no-repeat center center fixed; 
+    /* background: url('../images/background.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover; */
     position: relative;
-    top: 0;
-    left: 0;
     /* background: linear-gradient(#e66465, #9198e5); */
 }
 
@@ -39,12 +37,14 @@ a {
     padding : 5px;
     box-sizing: border-box;
     margin:30px 0px;
+    position: absolute;
+    top: 0;
 }
 
 .position {
     box-shadow: 0px 1px 1px 0px black;
     background-color: white;
-    background-color: rgb(223, 220, 185);
+    background-color: rgb(31 31 30);
     border-radius: 5px 5px 0px 0px;
     height : auto;
 }
@@ -57,7 +57,7 @@ a {
     font-size: 20px;
     color: whitesmoke;
     text-align: center;
-    background-color: rgb(5, 53, 98);
+    background-color: rgb(38 39 39);
     margin-top:0px;
     height : 30px;
     box-sizing: border-box;
@@ -118,13 +118,14 @@ a {
     padding-top: 15px;
     cursor: pointer;
     font-size: 25px !important;
+    color : #a8a89c ;
 }
 
 .remove-candidate:hover {
     color : red;
 }
 .remove-position {
-    color : yellow;
+    color : #a8a89c !important;
     cursor: pointer;
 }
 .remove-position:hover {

@@ -7,6 +7,15 @@ const session = require('express-session');
 const  passport = require('passport');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const MongoStore = require('connect-mongo')(session);
+const flash=require('connect-flash');
+const customMware=require('./config/middleware');
+var expressLayouts = require('express-ejs-layouts');
+
+
+app.use(expressLayouts);
+//extraxt style and scripts from subpages into the layout
+// app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 app.set('view engine', 'ejs');
 app.use(express.static('assets'));
 //body-parser
@@ -34,6 +43,18 @@ app.use(
 //passort setup
 app.use(passport.initialize());
 app.use(passport.session());
+//telling app to use flash
+app.use(flash());
+//middleware_filename.functionName
+app.use(customMware.setFlash);
+app.use(function (req, res, next) {
+  if(req.session.uid !== undefined){
+  res.locals.loggedIn = req.session.uid;
+  } else{
+  res.locals.loggedIn = null;
+  }
+  next()
+  })
 app.use('/', require('./routes'));
 
 app.listen(port, () => {

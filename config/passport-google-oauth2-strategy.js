@@ -2,7 +2,8 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const env = require('./environment');
 const User = require('../models/user');
-
+const express = require('express');
+var session = require('express-session')
 
 passport.use(new GoogleStrategy({
     clientID: env.google_client_id,
@@ -12,6 +13,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
        User.findOne({email: profile._json.email}, function (err, user) {
             if(err){console.log('error in google strategy-passport', err); return;}
+
             return done(err, user);
        });
   }

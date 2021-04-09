@@ -1,12 +1,12 @@
 const Election = require('../models/election');
 const moment = require('moment');
 module.exports.details = (req, res) => {
-    Election.find({}, (err, elections) => {
+    Election.find({}, null,{ sort :{ createdAt : -1}}, (err, elections) => {
         if (err) { console.log('error in finding election details') }
         return res.render('admin_home', {
             elections: elections
-        })
-    })
+        });
+    });
 }
 
 module.exports.create = function (req, res) {
@@ -19,6 +19,7 @@ module.exports.create = function (req, res) {
             });
         }
         var positions;
+        req.flash('success','Election successfully created!');
         console.log('election created');
         return res.render('enter_election_data', {
             positions : positions,
@@ -35,7 +36,8 @@ module.exports.updateTime = function (req, res) {
     let sTime = new Date(date + " " + time);
     let enTime = moment(sTime).add(parseInt(eTime.substr(0, 2)), 'h').add(parseInt(eTime.substr(3)), 'm').toDate();
     Election.findByIdAndUpdate(e_id, {scheduleTime : sTime, endTime : enTime}).exec((err, data) => {
-        if(err){console.log('Error in updating time of election', err); return;}
+        if(err){req.flash('error','Unable to update time of election'); console.log('Error in updating time of election', err);}
+        else{req.flash('success','Election time updated');}
         return res.redirect('/admin/get_election_info?election_id=' + e_id);
     })
 }

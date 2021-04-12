@@ -1,9 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+server/node_modules
+server/config/environment.js
+server/privacy.js
 
 # testing
 /coverage

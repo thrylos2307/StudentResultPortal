@@ -10,13 +10,12 @@ const MongoStore = require('connect-mongo')(session);
 const flash=require('connect-flash');
 const customMware=require('./config/middleware');
 var expressLayouts = require('express-ejs-layouts');
-
-
+app.set('view engine', 'ejs');
 app.use(expressLayouts);
 //extraxt style and scripts from subpages into the layout
-// app.set('layout extractStyles',true);
+app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
-app.set('view engine', 'ejs');
+
 app.use(express.static('assets'));
 //body-parser
 app.use(express.urlencoded());
@@ -49,6 +48,7 @@ app.use(flash());
 app.use(customMware.setFlash);
 app.use(function (req, res, next) {
   if(req.session.uid !== undefined){
+    console.log(req.session.uid)
   res.locals.loggedIn = req.session.uid;
   } else{
   res.locals.loggedIn = null;

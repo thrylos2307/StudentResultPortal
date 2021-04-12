@@ -7,13 +7,12 @@ module.exports.add = function (req, res) {
         
         if (err) {req.flash('error','Unable to find position!'); console.log('error in finding position id'); return; }
         Users.findOne({ uid: can_roll_no }, (err, data1) => {
-            console.log(data1._id);
+            
             if (err || !data1) {req.flash('error','Unable to find user'); console.log('error in finding user', err); return res.redirect('/admin/get_election_info?election_id=' + req.body.e_id); }
             if(data.candidate.indexOf(data1._id) != -1) {
                 req.flash('error','Candidate already exists for this position!');
                 console.log('already exists for this position'); return res.redirect('/admin/get_election_info?election_id=' + req.body.e_id);
             }
-            console.log(data1)
             if(!data1.isVoter){
                 req.flash('error','Admin cannot be voter!');
                 console.log('admin cant be voter'); return res.redirect('/admin/get_election_info?election_id=' + req.body.e_id);

@@ -100,10 +100,10 @@
     </div>
 </div>
 <script src="/js/updateTime.js"></script>
+<div style="display: none;">
 <script>
     let end = document.getElementById('end');
-    var data = '<%- JSON.stringify(data) %>';
-    data = JSON.parse(data);
+    data = JSON.parse('<%- JSON.stringify(data) %>');
     setInterval(() => {
         const diffTime = new Date(data.endTime) - new Date();
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
@@ -199,3 +199,4 @@ document.addEventListener("click", closeAllSelect);
 //     console.log(e.id);
 // })
 </script>
+</div>

@@ -25,6 +25,7 @@
     "fs": "0.0.1-security",
     "geolocation": "^0.2.0",
     "glob": "^7.1.6",
+    "handlebars": "^4.7.6",
     "moment": "^2.27.0",
     "mongoose-unique-array": "^0.3.4",
     "multer": "^1.4.2",

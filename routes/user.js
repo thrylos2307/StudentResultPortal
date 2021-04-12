@@ -7,12 +7,12 @@ const bcrypt = require('bcrypt');
 const authenticated = require('../config/authenticated');
 const transporter = require('../config/nodemailer').transporter;
 const saltRounds = 10;
-const swal = require('sweetalert');
 router.get('/logout', authenticated.checkLoggedIn, authenticated.stage2, (req, res) => {
   req.logout();
-  req.flash('success','Successfully logged out');
   req.session.uid = undefined;
   req.session.user_position = undefined;
+  req.session.loadtime = undefined;
+  req.flash('success','Successfully logged out');
   res.redirect('/');
 });
 router.get('/auth', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -27,7 +27,7 @@ router.post('/update_pass', authenticated.checkLoggedIn, authenticated.stage2, a
   const nPass = req.body.new_pass.trim();
   if(oPass.length < 8 || nPass.length < 8){
     
-    return res.redirect('/home');
+    return res.redirect('/');
   }
   const cnPass = req.body.confirm_new_pass.trim();
  
@@ -37,7 +37,7 @@ router.post('/update_pass', authenticated.checkLoggedIn, authenticated.stage2, a
     return res.redirect('/users/change_pass');
   }
   const User = await user.findOne({email : req.user.email});
-  console.log(User);
+  // console.log(User);
   const pMatch = await bcrypt.compare(oPass, User.password);
   if (!pMatch) {
     req.flash('error','Incorrect password!');
@@ -49,7 +49,7 @@ router.post('/update_pass', authenticated.checkLoggedIn, authenticated.stage2, a
     if (err) { req.flash('error','Some error occured!'); return res.render('change_pass'); }
   });
   req.flash('success','Password updated successfully');
-  return res.redirect('/home');
+  return res.redirect('/');
 });
 
 router.get('/forget_password', authenticated.checkLoggedIn, async (req, res) => {

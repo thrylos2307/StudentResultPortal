@@ -1,0 +1,204 @@
+<style>
+    body {
+        background: #e8cbc0;
+        background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+        background: linear-gradient(to right, #e8cbc0, #636fa4);
+        min-height: 100vh;
+        overflow-y: scroll;
+    }
+
+    .social-link {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        border-radius: 50%;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .social-link:hover,
+    .social-link:focus {
+        background: #ddd;
+        text-decoration: none;
+        color: #555;
+    }
+
+    .column {
+        float: left;
+        width: 33.3%;
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+    }
+
+    .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: transparent;
+        color: white;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .container::after,
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .title {
+        color: grey;
+    }
+
+    .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+    }
+
+
+
+ 
+
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+
+
+    #write {
+        /* border-right: solid 3px rgba(0, 255, 0, .75); */
+        white-space: nowrap;
+        overflow: hidden;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 15px;
+        margin: 0 auto;
+    }
+
+    /* Animation */
+    #write {
+        animation: animated-text 1s steps(45, end) 1s 1 normal both,
+            animated-cursor 300ms steps(45, end) infinite;
+    }
+
+    /* text animation */
+
+    @keyframes animated-text {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 600px;
+        }
+    }
+
+    /* cursor animations */
+
+    @keyframes animated-cursor {
+        from {
+            /* border-right-color: rgba(0, 255, 0, .75); */
+        }
+
+        to {
+            border-right-color: transparent;
+        }
+    }
+    
+        @media screen and (max-width: 650px) {
+        .column {
+            width: 100%;
+            display: block;
+        }
+        #write{
+            font-size: 15px !important;
+        }
+        
+    }
+
+</style>
+<div class="container py-5">
+    <div class="row text-center text-white">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4">About Us</h1>
+          </div>
+    </div>
+</div>
+
+
+
+<div class="d-flex justify-content-center ">
+    <div class="row text-center col-sm-9 d-flex justify-content-center" >
+        <!-- Team item -->
+
+        <!-- Team item -->
+        <div class="col-xl-3 col-sm-6 mb-5" style="min-width: 150px;">
+            <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                    src="images/user.png" alt="" width="100"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Rishav Raj</h5><span class="small  text-muted">alumni connect developer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                    <!-- <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li> -->
+                    <li class="list-inline-item"><a href="https://github.com/rrajgithub" class="social-link"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/rishav16/" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div><!-- End -->
+
+        <!-- Team item -->
+        <div class="col-xl-3 col-sm-6 mb-5" style="min-width: 150px;">
+            <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                    src="images/user.png" alt="" width="100"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Tushar Bharti</h5><span class="small text-muted">student portal developer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                    <!-- <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li> -->
+                    <li class="list-inline-item"><a href="https://github.com/thrylos2307" class="social-link"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/tushar-bharti-9b034a120/" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div><!-- End -->
+
+        <!-- Team item -->
+        <div class="col-xl-3 col-sm-6 mb-5" >
+            <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                    src="images/user.png" alt="" width="100"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Puneet Verma</h5><span class="small text-muted">evoting developer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                    <li class="list-inline-item"><a href="https://github.com/Puneet-iner/" class="social-link"><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
+        </div><!-- End -->
+    </div>
+</div>
+
+<div class="about-section ">
+    <h1 id="write" class="pt-5" style="font-size: 30px !important;">Grow through what you go through</h1>
+</div>
+<script>
+    setInterval(()=>{
+        document.getElementById('write').style.animation = 'animated-text 1s steps(45, end) 1s 1 normal both, animated-cursor 300ms steps(45, end) infinite';
+    }, 4000)
+</script>

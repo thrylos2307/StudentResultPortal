@@ -10,6 +10,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>        
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
         <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             *{
                 font-family: 'PT Serif', 'serif';
@@ -18,10 +19,19 @@
                 color: #212529;
                 background-color: #191717;
                 height: 100vh;
-                padding-top: 60px;
+                padding-top: 10px;
                 overflow-y: hidden;
+                position: relative;
+                top:70;
+            }
+            *::-webkit-scrollbar { 
+                display: none;
+            }
+            body{
+                background-color: #121111;
             }
         </style>
+        <%- style %>
         <!-- extracting here the css part  of sub page -->
     </head>
     <body>
@@ -31,10 +41,18 @@
         <main id="layout-main">
             <%- body %>
         </main>
-        
+        <% if(locals.loggedIn){%>
+            <%- include('_footer'); %>
+        <%}%>
          <!-- extracting here the js part  of sub page -->
         <%- script %>
         <script>
+            <% if(!locals.loggedIn) {%>
+                const lm = document.getElementById('layout-main');
+                lm.style.top = '0';
+                lm.style.margin = '0px'
+                lm.style.height = '100vh'
+            <%}%>
             <% if ( flash.success && flash.success.length>0 ){ %> 
             new Noty({
                 theme:'relax',
@@ -58,4 +76,5 @@
          
         </script>
     </body>
+    
 </html>

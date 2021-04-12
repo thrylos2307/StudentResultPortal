@@ -7,10 +7,11 @@ module.exports.verify = (req, res) => {
     User.findOne({ email: req.user.email }, async (err, user) => {
         if (user.uid == id) {
             if (await bcrypt.compare(password, user.password)) {
-                req.flash('success','Successfully logged in');
                 req.session.uid = id;
                 res.locals.uid = id;
-                return res.redirect('/home');
+                req.session.loadtime = 1;
+                req.flash('success','Successfully logged in');
+                return res.redirect('/');
             } else {
                 req.flash('error','Incorrect id/password');
                 return res.redirect('/verify/stage2');

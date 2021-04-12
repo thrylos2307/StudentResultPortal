@@ -14,11 +14,15 @@ module.exports.checkAdminLoggedIn = (req, res, next) => {
 }
 
 module.exports.stage2 = (req, res, next) => {
-    console.log(req.session.uid );
+    if(req.session.uid){
+    req.session.loadtime = req.session.loadtime + 1;
+    }
     return req.session.uid ? next() : res.render('stage2');
 }
 
 module.exports.stage2_1 = (req, res, next) => {
-    console.log(req.session.uid);
-    return req.session.uid ? res.redirect('/home') : next();
+    if(req.session.uid){
+        req.session.loadtime = req.session.loadtime + 1;
+    }
+    return req.session.uid ? res.redirect('/') : next();
 }

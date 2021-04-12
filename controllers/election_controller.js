@@ -39,5 +39,5 @@ module.exports.updateTime = function (req, res) {
         if(err){req.flash('error','Unable to update time of election'); console.log('Error in updating time of election', err);}
         else{req.flash('success','Election time updated');}
         return res.redirect('/admin/get_election_info?election_id=' + e_id);
-    })
+    });
 }

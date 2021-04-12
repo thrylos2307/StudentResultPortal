@@ -11,6 +11,7 @@
         <% } %>
     </ul>
 </div>
+<div style="display: none; visibility: hidden;">
 <script>
     var elections = '<%- JSON.stringify(elections) %>';
     elections = JSON.parse(elections);
@@ -81,3 +82,4 @@
         }
     }, 1000);
 </script>
+</div>

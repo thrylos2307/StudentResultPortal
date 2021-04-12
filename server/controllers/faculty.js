@@ -19,20 +19,39 @@ module.exports.a = (req, res) => {
   // alkmdlad
   // alkmdlad
   // a;lsdm
-  for (var i = 0; i < req.body.id.length; i++) {
-    con.query(`insert into faculty_login values(${req.body.id[i]},'${req.body.name[i]}','${req.body.email[i]}','${req.body.password[i]}')`, function (err, result) {
-      console.log(result);
+  if (typeof req.body.id == "string") {
+    con.query(`insert into faculty_login values(${req.body.id},'${req.body.name}','${req.body.email}','${req.body.password}')`, function (err, result) {
       if (err) {
         succes = 0;
-        console.log(err.sqlMessage, ' while inserted value for id=', req.body.id[i]);
-        // res.redirect('/login');
-        i = req.body.id.length;
+        console.log(err.sqlMessage, ' while inserted value for id=', req.body.id);
+        req.flash("error", "error while inserting" + req.body.id);
+        res.locals.error = req.flash("error");
+
       }
       else if (result) {
+        succes = 1;
         console.log("id=", req.body.id[i], " got inserted !!");
+
       }
 
     });
+  }
+  else {
+    for (var i = 0; i < req.body.id.length; i++) {
+      con.query(`insert into faculty_login values(${req.body.id[i]},'${req.body.name[i]}','${req.body.email[i]}','${req.body.password[i]}')`, function (err, result) {
+        console.log(result);
+        if (err) {
+          succes = 0;
+          console.log(err.sqlMessage, ' while inserted value for id=', req.body.id[i]);
+          // res.redirect('/login');
+          i = req.body.id.length;
+        }
+        else if (result) {
+          console.log("id=", req.body.id[i], " got inserted !!");
+        }
+
+      });
+    }
   }
   if (succes) {
     res.render("logged.ejs");
@@ -106,9 +125,7 @@ module.exports.c = async (req, res) => {
       await con.query(sql1, (err, result) => {
         if (err) {
           console.log(err);
-        }
-        else {
-          console.log(jsonObj[k].roll, "got inserted");
+          req.flash('error', "error while updating value for" + jsonObj[k].roll);
         }
       });
     }
@@ -125,6 +142,6 @@ module.exports.c = async (req, res) => {
     })
   });
 
-  res.redirect("/login");
+  return res.redirect("/faculty/results?table=" + req.session.table);
 
 }

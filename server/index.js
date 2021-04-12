@@ -1,62 +1,55 @@
-const passport=require('passport');
-const passportLocal=require('./config/passport_local');
-const express = require('express');
-const bodyParser=require('body-parser');
-const cors = require('cors');
-const app = express();
 
-const port = 5000;
+const passportLocal = require('./config/passport_local');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const flash = require('connect-flash');
+const app = express();
 const session = require('express-session');
-const MySQLStore=require('express-mysql-session')(session);
-const path=require('path');
-app.set('view-engine','ejs');
+const passport = require('passport');
+const port = 5000;
+const MySQLStore = require('express-mysql-session')(session);
+const customMware = require('./config/middleware');
+const path = require('path');
+var expressLayouts = require('express-ejs-layouts');
+var router = express.Router()
+app.set('view engine', 'ejs');
+
+app.set('layout extractScripts', true);
+app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, 'static')));
-const jsonParser=bodyParser.json();
-const urlencodedParser=bodyParser.urlencoded({ extended: true });
-app.use('/css',express.static(__dirname+'/node_modules/bootstrap/dist/css'));
+const jsonParser = bodyParser.json();
+const urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(cors());
 app.use(urlencodedParser);
 app.use(session({
   secret: 'secret_session',
   resave: false,
+  rolling: true,
   saveUninitialized: false,
-  cookie:{maxAge:6000000}
+  cookie: { maxAge: 60000 * 10 }
 }));
-app.use(require('flash')());
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+const con = require('./privacy');
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected to sql");
+});
+
+
+app.use(flash());
+app.use(customMware.setFlash);
+
+app.use('/', require('./routes'));
+
 app.listen(port, () => {
   console.log(`server is up at ${port}`);
   return;
 })
 
-const con=require('./privacy');
-
-con.connect(function(err){
-  if(err)throw err;
-  console.log("Connected to sql");
-});
-
-  
-app.use('/',require('./routes'));
-
-
-// app.post("/create_faculty",(req,res)=>{
-//      const id=req.body.id;
-//      const name =req.body.name;
-//      const email=req.body.Email;
-//      const passw=req.body.password;
-//      con.query("INSERT INTO faculty_login(Id,Name,Email,Password) values(?,?,?,?)",
-//      [id,name,email,passw],
-//      (err,result)=>{
-//        if(err)console.log(err);
-//        else{res.send("values inserted");} 
-//      });
-// });
-// app.get("/faculty",(req,res)=>{
-//   con.query("select *from faculty_login",(err,result)=>{
-//     if(err)console.log(err);
-//     else{res.send(result);console.log(result);}
-//   });
-// });`

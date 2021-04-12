@@ -22,21 +22,31 @@ function Exam(obj)
  
  
 function function1(obj){
-    console.log("1");
-    
     const num=obj.previousElementSibling.value;
     console.log(num);
     document.getElementById('num').style.display='none';
     document.getElementById('add_col').style.display='block';
-
-    let init=document.getElementById('column').innerHTML;
+var tmp= `<div id='column'>
+<div class="d-flex justify-content-md-end">
+    <label for="col" style="margin-top: 15px;">Column:</label>
+    <input type="text" id="col" name="col" placeholder="Exam name" required>
+    <select name="type" id="type">
+        <option value="double">Marks</option>
+        <option value="varchar(10)">Grade</option>
+    </select>
+</div>
+<br>
+</div>`
+    let init=tmp;
+   
     console.log("printing init",init);
     for(var i=1;i<=num-1;i++)
     {
-        const fac=document.getElementById('column');
-        fac.innerHTML=fac.innerHTML+init;
+        
+        init+=tmp;
     
     }
+    document.getElementById('column').innerHTML=init;
 }
 function function2(obj){
     console.log("1");
@@ -55,12 +65,3 @@ function function2(obj){
     
     }
 }
-// function function2(obj){
-//     const input = document.getElementById('fileSelect');
-//     document.getElementById('nums').style.display='none';
-// input.addEventListener('change', () => {
-//   readXlsxFile(input.files[0]).then((data) => {
-//      console.log(data,obj);
-//   })
-// })
-// }

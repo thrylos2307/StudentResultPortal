@@ -1,43 +1,55 @@
 const e = require("express");
 const con = require("../privacy.js");
-module.exports.create = function (req, res) {
+const { c } = require("./faculty.js");
+const util = require('util');
+const query = util.promisify(con.query).bind(con);
+module.exports.create = async function (req, res) {
     console.log(req.body, req.user);
+    var cannot = 0;
+    await query(`select *from subject_info where Faculty_id=${req.user.id} and Code='${req.body.code.toLowerCase()}'`, async function (err1, result1) {
 
-    con.query(`select *from subject_info where Faculty_id=${req.user.id} and Code='${req.body.code.toLowerCase()}'`, function (err, result) {
-        console.log(result, result.length);
-        if (err) {
-            console.log(err)
-        }
-        else if (!result.length) {
+        if (err1 || !result1.length) {
+            console.log(err1)
+            cannot = 1;
             console.log("You have enter wrong subject code or wrong credential for creating table");
+            req.flash("error", "sorry you cannot create table for major " + req.body.code);
+            return res.redirect('/login');
+
         }
         else {
             console.log("authorized user");
-            var table = req.body.branch + '_' + req.body.sem + '_' + req.body.code + '_' + result[0].Major + '_' + req.body.batch_year;
-            con.query(`create table if not exists ?? (roll bigint primary key)`, [table], function (err, result) {
-                if (err)
+            var table = req.body.branch + '_' + req.body.sem + '_' + req.body.code + '_' + result1[0].Major + '_' + req.body.batch_year;
+            await query(`create table if not exists ?? (roll bigint primary key)`, [table], function (err, result) {
+                if (err) {
                     console.log(err);
+                }
+                else {
+                    console.log("result", result);
+                    return res.redirect('/login');
+
+                }
             });
         }
     });
-    res.redirect('/login');
+    return res.redirect('/login');
+    // else if (cannot == 2)
+    //     req.flash("success", "table created for major " + req.body.code+"✔️");
 }
 
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
     console.log("priting=>", req.body);
     cols = req.body;
 
-    con.query(`select *from subject_info where Faculty_id=${req.user.id} and Code='${req.body.code.toLowerCase()}'`, function (err, result) {
-        console.log(result);
-        if (err) {
-            throw err;
-        }
-        else if (!result) {
-            console.log("You have enter wrong subject code or wrong credential for creating table");
+    await query(`select *from subject_info where Faculty_id=${req.user.id} and Code='${req.body.code.toLowerCase()}'`, async function (err1, result1) {
+        console.log("result not exist", err1, result1);
+        if (err1 || !result1.length) {
+
+            req.flash("error", "You have enter wrong subject code or name for creating exam");
+            return res.redirect('/login');
         }
         else {
             console.log("authorized user");
-            var table = req.body.branch + '_' + req.body.sem + '_' + req.body.code + '_' + result[0].Major + '_' + req.body.batch_year;
+            var table = req.body.branch + '_' + req.body.sem + '_' + req.body.code + '_' + result1[0].Major + '_' + req.body.batch_year;
             tables = []
             tables.push(table)
             var sql = "alter table ";
@@ -55,17 +67,22 @@ module.exports.update = function (req, res) {
             }
             console.log(tables, sql);
             con.query(sql, function (err, result) {
-                if (err)
-                    throw err;
+                if (err) {
+                    console.log(err);
+                    if (!result) {
+                        req.flash('error', "either exam already exist or you did not created valid table");
+                    }
+                }
                 else {
                     res.result = result;
                     console.log(result);
+                    req.flash('success', 'exam created');
                 }
-
+                return res.redirect('/login');
             });
         }
     });
-    res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
+    return res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
 }
 module.exports.show = function (req, res) {
     console.log("priting=>", req.body, req.user);
@@ -88,12 +105,12 @@ module.exports.show = function (req, res) {
                     tables.push(tableresult[tab].TABLE_NAME)
                 }
                 console.log("inside show tables", req.session);
-                res.render('tables.ejs', { table: tables, name: req.session.passport.user.Name.toUpperCase() });
+                return res.render('tables.ejs', { table: tables, name: req.session.passport.user.Name.toUpperCase() });
             });
         });
     }
     catch {
-        res.render('/login');
+        return res.render('/login');
     }
     //select  TABLE_NAME from information_schema.Tables where TABLE_NAME REGEXP 'CSE.+[0-9]{4}$';
 }
@@ -178,11 +195,13 @@ module.exports.delete = function (req, res) {
         con.query(`delete from ${req.query.table} where roll=?`, [roll], function (err, result) {
             if (err) {
                 console.log(err);
+                req.flash('error', 'problem with deleting  record');
+                return res.redirect('/login');
             }
             else {
                 console.log(req.query.table);
                 req.session.table = req.query.table;
-                res.redirect('/faculty/results?table=' + req.query.table);
+                return res.redirect('/faculty/results?table=' + req.query.table);
             }
 
         });
@@ -191,41 +210,72 @@ module.exports.delete = function (req, res) {
 
         res.redirect('/login');
     }
+}
+
+module.exports.deltable = function (req, res) {
+    console.log("updated values=>", req.query);
+
+    try {
+        con.query(`drop table ${req.query.table}`, function (err, result) {
+            if (err) {
+                console.log(err);
+                req.flash('error', 'problem with deleting table');
+                return res.redirect('/login')
+            }
+            else {
+
+                req.session.table = req.query.table;
+                return res.redirect('/faculty/showtables');
+            }
+
+        });
+    }
+    catch {
+
+        return res.redirect('/login');
+    }
 
 }
-module.exports.addresult = function (req, res) {
+
+module.exports.addresult = async function (req, res) {
     console.log("updated values=>", req.session);
     var val = [];
-    var sql = "insert into " + req.session.table + "(";
+    var sql = "replace into " + req.session.table + "(";
     for (var i in req.body) {
         sql += i + ",";
     }
     sql = sql.slice(0, -1) + ") values(";
-    for (var k in req.body.roll) {
-        var tmp = [];
-        for (var i in req.body) {
-            sql += req.body[i][k] + ",";
+    console.log(typeof(req.body.roll));
+    if (typeof(req.body.roll) == "string") {
+        for (var k in req.body) {
+            sql = sql + req.body[k] + ",";
         }
-        sql = sql.slice(0, -1) + "),(";
+        sql = sql.slice(0, -1) + ')';
     }
-    sql = sql.slice(0, -2);
+    else {
+        for (var k in req.body.roll) {
+            var tmp = [];
+            for (var i in req.body) {
+                sql += req.body[i][k] + ",";
+            }
+            sql = sql.slice(0, -1) + "),(";
+        }
+        sql = sql.slice(0, -2);
+    }
     console.log(sql);
-    // try {
-    con.query(sql, function (err, result) {
+    await query(sql, function (err, result) {
         if (err) {
             console.log(err, result);
+            return res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
+
+        }
+        else {
+            return res.redirect('/faculty/results?table=' + req.session.table);
         }
     });
-    //         else {
-    //             console.log(req.query.table);
-    //             res.redirect('/faculty/results?table=' + req.query.table);
-    //         }
 
-    //     });
-    // }
-    // catch {
 
-    res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
+    return res.render('faculty_home.ejs', { name: req.session.passport.user.Name.toUpperCase() });
 
 
 }

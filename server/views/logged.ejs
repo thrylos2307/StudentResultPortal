@@ -27,7 +27,7 @@
 
             <input class="btn btn-primary custom" type="button" id="addbatch" onfocus=batch(this) value='Add Batch'><br>
             <input class="btn btn-primary custom" type="button" id="addmajor" onfocus=major(this) value='Add Major'><br>
-            <a href="/cgpwd"><i class="fas fa-lock" type="button" title='Change password'
+            <a href="/changepassword"><i class="fas fa-lock" type="button" title='Change password'
                     style="margin-right: 20px;"></i></a>
             <a href="/logout"><i class="fas fa-sign-out-alt" title="Logout"></i></a>
             <br>
@@ -123,6 +123,7 @@
                         <th>Major</th>
                         <th>Faculty_id</th>
                         <th>FacultyName</th>
+                        <th>Sem</th>
                     </tr>
                 </thead>
                 <tr id='major'>
@@ -148,6 +149,12 @@
                         <div>
                             <!-- <label for="password">Password</label> -->
                             <input type="text" id="FacultyName" name="FacultyName" required>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                           
+                            <input type="number" id="Sem" name="Sem" required>
                         </div>
                     </td>
                 </tr>

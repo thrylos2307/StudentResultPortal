@@ -1,25 +1,44 @@
-<link rel="stylesheet" href="/css/student.css">
+<link rel="stylesheet" href="/css/resulttable.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<div style="margin-left:25%; margin-top: 10%; margin-right: 10%;">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Major</th>
-                <th scope="col">Marks</th>
-            </tr>
-        </thead>
-        <% for(var key in result[0]) {%>
-            <% if(key!="roll" ){ %>
-                <tr>
-                    <td>
-                        <%=key%>
-                    </td>
-                    <td>
-                        <%=result[0][key]%>
-                    </td>
-                </tr>
-                <% } %>
-                    <% } %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+<style>
+    *{
+        font-family: 'New Tegomin', serif ;
+    }
+</style>
+<div class="body">
+   
+    <div class="cont text-center">
+        <h1 class="" style="margin-top: 5vh;font-family:'New Tegomin', serif ;color: rgb(87, 212, 212);font-size: 50px !important;">Results</h1>
+        <div class="left">
+            <% for(var i of Object.keys(result)) {%>
+                <div class="mb-2 bg-secondary text-white " style="text-align: center;font-size: 22px;margin-top: 0;">
+                    <%=i%>
+                </div>
+                <table class="table text-center table-bordered " style="margin-top: -10px;border-radius: 10px;">
 
-    </table>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Major</th>
+                            <th scope="col">Marks</th>
+                        </tr>
+                    </thead>
+                    <% for(var key of Object.keys(result[i][0])) {%>
+                        <% if(key!="roll" ){ %>
+                            <tr>
+                                <td class="text-secondary">
+                                    <%=key%>
+                                </td>
+                                <td>
+                                    <%=result[i][0][key]%>
+                                </td>
+                            </tr>
+                            <% } %>
+                                <% } %>
+
+                </table>
+                <% } %>
+        </div>
+    </div>
 </div>

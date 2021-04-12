@@ -1,8 +1,8 @@
 var mysql=require('mysql');
-module.exports=mysql.createConnection({
+module.exports= mysql.createConnection({
     host: "localhost",
     user:"root",
-    password: 
-    database:
+    password: "Tushar@0305",
+    database:"student_portal"
 });
 

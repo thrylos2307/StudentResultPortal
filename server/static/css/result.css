@@ -2,17 +2,19 @@ body {
     background-image: url('../board.png');
     background-repeat: no-repeat;
     background-size: cover;
+   
    }
  .container-fluid h1{
-     margin-left: 30%;
+     margin: auto 10vw;
      font-family: 'Train One', cursive;
+     align-items: center;
  }
  
  
  .container-fluid hr{
     border-top: 1px dashed #e0dbd1;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin:2vh 10vw;
+ 
 }
 table{
     margin-right: 10%;

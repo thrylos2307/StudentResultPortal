@@ -3,12 +3,11 @@
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/faculty.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
-
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@1,500&display=swap" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
 <style type="text/css">
     .form-style-8 {
         font: 16px Arial, Helvetica, sans-serif;
@@ -42,6 +41,7 @@
         height: 45px;
     }
 </style>
+
 <div class="left">
     <a href="/logout"><i class="fas fa-sign-out-alt" title="sign out"></i><br><br></a>
     <a href="/changepassword"><i class="fas fa-lock" title="change password"></i></a>
@@ -75,15 +75,15 @@
 </form>
 
 <div id='num' class="form-style-8" style='display: none;border-radius: 10px;'>
-    <input name="numbers" type='number' placeholder="How many exams u want to create">
-    <button class=" btnfos-3" onclick=function1(this)>Create</button>
+    <input name="numbers" type='number' pattern="[1-9]+" placeholder="How many exams u want to create">
+    <button class=" btnfos-3" onclick=function1(this) >Create</button>
 </div>
 
 <div id='add_table' class="form-style-8" style='display: none; border-radius: 10px;'>
     <form id="login_info" action="/faculty/createtable" method="POST">
         <div>
             <!-- <label for="id">Id/Roll_faculty</label> -->
-            <input type="number" id="batch" name="batch_year" placeholder="Batch/year" required>
+            <input type="number" id="batch" name="batch_year" placeholder="Batch/year" title="input valid year" pattern="[2-9][0-9]{3}" required>
         </div>
         <div class="d-flex">
             <label for="sem" style="margin-top: 5px;">SEM:</label>
@@ -115,13 +115,12 @@
         <br>
 
         <button class=" btnfos-3" value="add" name="create">Create</button>
-
     </form>
 </div>
 <div id='add_col' class="form-style-8" style='display: none; border-radius: 10px;'>
     <form id="login_info" action="/faculty/updatetable" method="POST">
         <div>
-            <input type="number" id="batch" name="batch_year" placeholder="Batch/year" required>
+            <input type="number" id="batch" name="batch_year" title="enter the valid year" pattern="[2-9][0-9]{3}" placeholder="Batch/year" required>
         </div>
         <div class="d-flex justify-content-md-end">
             <label for="sem" style="margin-top: 15px;">SEM:</label>

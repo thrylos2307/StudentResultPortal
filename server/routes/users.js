@@ -9,7 +9,6 @@ router.post('/create-session',passport.authenticate(
     'local',
     {   
         failureRedirect:'/login'
-        
     },
 ) ,usersController.createSession);
 

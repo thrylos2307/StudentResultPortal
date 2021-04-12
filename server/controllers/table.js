@@ -39,7 +39,11 @@ module.exports.delete = function (req, res) {
     try {
         con.query(`delete from ${req.query.table} where ${id}=?`,[kid], function (err, result) {
             if (err)
+            {
                 console.log("error",err);
+                req.flash("error","cannot delete data first delete their other major record");
+                res.redirect('/admin/showtables?table='+table);
+            }
             else {
                 console.log(table);
                 res.redirect('/admin/showtables?table='+table);

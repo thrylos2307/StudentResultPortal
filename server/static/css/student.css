@@ -1,6 +1,39 @@
-body {
-    background-image: url('../notebook.png');
-    background-size: cover;
-  height: 100%;
-  weight: 100%;
-}
+.body{
+  background-color:rgb(192, 224, 235);
+  height: 100vh;
+  width:100vw;
+  
+  display:flex;
+  justify-content: center;
+  }
+  
+  .cont{
+      background-image: url('../notebook.png');
+      background-size: cover;
+  position: relative;
+    height: 100vh;
+    width: 70vw;
+  
+  }
+  .left {
+    position:fixed;
+    margin: 5vh 7vw;
+  }
+  .left i{
+    font-size: 20px;
+
+    color: rgb(104, 194, 230);
+  }
+  i:hover{
+    font-size: 30px;
+  }
+  h1{
+  
+    color: rgb(158, 179, 179);
+    font-size: 100px;
+    font-family: 'Kaushan Script', cursive;
+  }
+  
+  button:hover{
+    font-size:10px;
+  }

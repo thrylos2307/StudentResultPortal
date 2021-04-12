@@ -14,20 +14,42 @@ module.exports.a = (req, res) => {
   // alkmdlad
   // alkmdlad
   // a;lsdm
-  for (var i = 0; i < req.body.Code.length; i++) {
-    con.query(`insert into subject_info values('${req.body.Code[i]}','${req.body.Major[i]}',${req.body.Faculty_id[i]},'${req.body.FacultyName[i]}')`, function (err, result) {
+  if (typeof req.body.Code == "string") {
+    con.query(`insert into subject_info values('${req.body.Code}','${req.body.Major}','${req.body.Faculty_id}','${req.body.FacultyName}',${req.body.Sem})`, function (err, result) {
       console.log(result);
       if (err) {
         succes = 0;
-        console.log(err.sqlMessage, ' while inserted value for code=', req.body.Code[i]);
-        // res.redirect('/login');
-        i = req.body.id.length;
+        console.log(err.sqlMessage, ' while inserted value for id=', req.body.Code);
+        req.flash("error","error while inserting"+req.body.Code);
+        res.locals.error=req.flash("error");
+       
       }
       else if (result) {
-        console.log("code=", req.body.Code[i], " got inserted !!");
+        succes=1;
+        console.log("id=", req.body.Code, " got inserted !!");
+        
       }
 
     });
+  }
+  else {
+    for (var i = 0; i < req.body.Code.length; i++) {
+      con.query(`insert into subject_info values('${req.body.Code[i]}','${req.body.Major[i]}',${req.body.Faculty_id[i]},'${req.body.FacultyName[i]}',${req.body.Sem[i]})`, function (err, result) {
+        console.log(result);
+        if (err) {
+          succes = 0;
+          console.log(err.sqlMessage, ' while inserted value for code=', req.body.Code[i]);
+          req.flash("error","error while inserting"+req.body.Code[i]);
+          res.locals.error=req.flash("error");
+          i = req.body.id.length;
+        }
+        else if (result) {
+          succes=1;
+          console.log("code=", req.body.Code[i], " got inserted !!");
+        }
+
+      });
+    }
   }
   if (succes) {
     res.render("logged.ejs");

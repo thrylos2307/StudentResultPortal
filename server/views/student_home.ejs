@@ -3,10 +3,12 @@
     integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/student.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@1,500&display=swap" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <style type="text/css">
@@ -40,38 +42,43 @@
         height: 45px;
     }
 </style>
-<div class="left">
-    <i class="fas fa-sign-out-alt" title="sign out"></i><br><br>
-    <i class="fas fa-lock" title="change password"></i>
+<div class="body">
+    <div class="cont">
+        <div class="left">
+            <a href="/logout"><i class="fas fa-sign-out-alt" title="sign out"></i></a><br><br>
+            <a href="/changepassword"><i class="fas fa-lock" title="change password"></i></a>
+        </div>
+        <h1 style="padding-top: 5%;margin-bottom: 1%;text-align: center;">Welcome to academic portal</h1>
+        <div class="d-flex justify-content-sm-center" style="margin-top: 135px;">
+            <div id='num' style="margin-right: 10px;">
+                <button class="btn  btn-lg btn-outline-success" onclick=function1(this)>View Result</button>
+            </div>
+            <div id='num' style="margin-left:10px ;">
+                <a href="http://iiitg.ac.in/curriculum.php"><button class="btn btn-lg btn-info"
+                        onclick=function1(this)>Subject
+                        Info</button></a>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <form id='result' class="form-style-8" action="/showresult" method="POST"
+            style="display: none;border-radius: 10px;">
+            <div class="d-lg-inline">
+                <label for="sem">Select Sem:</label>
+
+                <select type='number' name="sem" id="sem">
+                    <% for(var i=1;i<=sem;i++) {%>
+                        <option value=<%=i%>><%=i%>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
+            <br>
+            <button class="btn btn-primary btn-lg btn-rounded" type="submit">Show</button>
+
+
+        </form>
+    </div>
 </div>
-<h1 style="margin-top: 3%;margin-bottom: 1%;text-align: center
-;">Welcome to academic portal</h1>
-<div class="d-flex justify-content-sm-center" style="margin-top: 135px;">
-    <div id='num' style="margin-right: 10px;">
-        <button class="btn  btn-lg btn-outline-success" onclick=function1(this)>View Result</button>
-    </div>
-    <div id='num' style="margin-left:10px ;">
-        <a href="http://iiitg.ac.in/curriculum.php"><button class="btn btn-lg btn-info" onclick=function1(this)>Subject
-                Info</button></a>
-    </div>
-</div>
-<br>
-<br>
-
-<form id='result' class="form-style-8" action="/showresult" method="POST" style="display: none;border-radius: 10px;">
-    <div class="d-lg-inline">
-        <label for="sem">Select Sem:</label>
-
-        <select type='number' name="sem" id="sem">
-            <% for(var i=1;i<=sem;i++) {%>
-                <option value=<%=i%>><%=i%>
-                </option>
-                <% } %>
-        </select>
-    </div>
-    <br>
-    <button class="btn btn-primary btn-lg btn-rounded" type="submit">Show</button>
-
-
-</form>
 <script type="text/javascript" src="/js/student.js"></script>

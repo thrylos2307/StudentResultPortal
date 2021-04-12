@@ -21,58 +21,63 @@
 </div>
 <br>
 
-
-<table class="table table-bordered table-responsive-md  text-center" style="border-radius: 10px !important;">
-    <tr>
-        <% for(var key in results[0]) {%>
-            <th style="border: 1px solid #dddddd;">
-                <%=key %>
-            </th>
-            <% } %>
-                <th>Delete</th>
-    </tr>
-
-    <form action="/faculty/update" method="post">
-        <input value="<%=tablename%>" style="display: none;" name="table">
-        <% for(var i=0;i<results.length;i++) {%>
-            <tr>
-                <% for(var k in results[i]) {%>
-                    <% if(k=="roll" ) {%>
-                        <td><input id="<%=results[i].roll%> <%=k%>" value="<%=results[i][k]%>" readonly> </td>
-
-                        <% }else{ %>
-                            <td><input id="<%=results[i].roll%> <%=k%>" value="<%=results[i][k]%>"
-                                    onfocus=edited(this.id) readonly> </td>
-                            <% } %>
-                                <% } %>
-
-                                    <td>
-                                        <a href="/faculty/delete?roll=<%=results[i].roll%>&table=<%=tablename%>"><i
-                                                class="fa fa-trash remove-candidate"></i></a>
-                                    </td>
-            </tr>
-            <% } %>
-                <button type="submit">Update</button>
-    </form>
-
-</table>
-<button id="add">Add more </button>
-</div>
-
-<form action="/faculty/addresult" method="post" id='addnew' style="display: none;">
-    <table id="tableid">
+<div style="margin: 0 10vw;">
+    <table class="table table-bordered table-responsive-md  text-center" style="border-radius: 10px !important;">
         <tr>
-            <% for(var key in cols) {%>
+            <% for(var key in results[0]) {%>
                 <th style="border: 1px solid #dddddd;">
-                    <%=cols[key] %>
+                    <%=key %>
                 </th>
                 <% } %>
+                    <th>Delete</th>
         </tr>
 
+        <form action="/faculty/update" method="post">
+
+            <input value="<%=tablename%>" style="display: none;" name="table">
+            <% for(var i=0;i<results.length;i++) {%>
+                <tr>
+                    <% for(var k in results[i]) {%>
+                        <% if(k=="roll" ) {%>
+                            <td><input id="<%=results[i].roll%> <%=k%>" value="<%=results[i][k]%>" readonly> </td>
+
+                            <% }else{ %>
+                                <td><input id="<%=results[i].roll%> <%=k%>" type="number" value="<%=results[i][k]%>"
+                                        onfocus=edited(this.id) readonly> </td>
+                                <% } %>
+                                    <% } %>
+
+                                        <td>
+                                            <a href="/faculty/delete?roll=<%=results[i].roll%>&table=<%=tablename%>"><i
+                                                    class="fa fa-trash remove-candidate"></i></a>
+                                        </td>
+                </tr>
+                <% } %>
+
+                    <button type="submit" class="btn btn-info ">Update</button>
+        </form>
+
     </table>
-    <button type="submit" value="<%=tablename%>">Add result</button>
-</form>
-<div class="align-content-center" style="padding:10px 15px; margin: 10% 38%; border: 1px rgb(159, 209, 176) solid;border-radius: 10px;background-color: rgb(138, 243, 212); opacity: 0.6;">
+</div>
+
+<button id="add" class="btn btn-outline-info" style="margin-left: 10vw ; margin-top: 2vh;">Add more </button>
+<div style="margin:1vh 10vw;position:absolute;">
+    <form action="/faculty/addresult" method="post" id='addnew' style="display: none;">
+        <table id="tableid" class="table table-bordered   text-center">
+            <tr>
+                <% for(var key in cols) {%>
+                    <th style="border: 1px solid #dddddd;">
+                        <%=cols[key] %>
+                    </th>
+                    <% } %>
+            </tr>
+
+        </table>
+        <button type="submit" class="btn btn-success" value="<%=tablename%>">Add result</button>
+    </form>
+</div>
+<div class="align-content-center"
+    style="padding:10px 15px; margin: 10% 38%; border: 1px rgb(159, 209, 176) solid;border-radius: 10px;background-color: rgb(138, 243, 212); opacity: 0.6;">
     <form style="margin-top:5px;" action="/f_upload_student" method="post" enctype="multipart/form-data">
         <input class="input2" type="file" id="fileSelect" name="fileSelect" />
         <button class="upload btn btn-secondary" type="submit">Upload</button>
@@ -82,7 +87,7 @@
     var tmp = '<tr id="row">'
     '<% for(var key in cols) {%>'
     tmp += '<td>'
-    tmp += '<input name="<%=cols[key]%>" required>'
+    tmp += '<input type="" patter="[0-9]+" name="<%=cols[key]%>" required>'
     tmp += '</td>'
     '<%}%>'
     tmp += '</tr>'

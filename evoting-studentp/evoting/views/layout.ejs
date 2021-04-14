@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>        
+        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            *{
+                font-family: 'PT Serif', 'serif';
+            }
+            #layout-main{
+                color: #212529;
+                background-color: #191717;
+                height: 100vh;
+                padding-top: 10px;
+                overflow-y: hidden;
+                position: relative;
+                top:70;
+            }
+            *::-webkit-scrollbar { 
+                display: none;
+            }
+            body{
+                background-color: #121111;
+            }
+        </style>
+        <%- style %>
+        <!-- extracting here the css part  of sub page -->
+    </head>
+    <body>
+        <% if(locals.loggedIn){%>
+            <%- include('_header'); %>
+        <%}%>
+        <main id="layout-main">
+            <%- body %>
+        </main>
+        <% if(locals.loggedIn){%>
+            <%- include('_footer'); %>
+        <%}%>
+         <!-- extracting here the js part  of sub page -->
+        <%- script %>
+        <script>
+            <% if(!locals.loggedIn) {%>
+                const lm = document.getElementById('layout-main');
+                lm.style.top = '0';
+                lm.style.margin = '0px'
+                lm.style.height = '100vh'
+            <%}%>
+            <% if ( flash.success && flash.success.length>0 ){ %> 
+            new Noty({
+                theme:'relax',
+                text: '<%= flash.success%>',
+                type:'success',
+                layout:'topRight',
+                timeout:1500
+                
+            }).show();
+        <% } %>
+        <% if ( flash.error && flash.error.length >0 ){ %>
+            new Noty({
+                theme:'relax',
+                text:'<%= flash.error%>',
+                type:'error',
+                layout:'topRight',
+            
+                timeout:1500
+            }).show();
+        <% } %>
+         
+        </script>
+    </body>
+    
+</html>

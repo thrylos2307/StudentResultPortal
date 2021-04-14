@@ -1,0 +1,78 @@
+<link rel="stylesheet" type="text/css" href="/css/elections.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<style>
+    #add-user {
+        background-color: rgb(2, 5, 32);
+    }
+    #add-user:hover {
+        background-color: rgb(10, 2, 32);
+    }
+</style>
+<div class="body-a" style=" box-sizing: border-box;">
+    <ul class="elections" >
+        <% for(var i = 0; i < elections.length; i++) { %>
+        <a href="/admin/get_election_info?election_id=<%= elections[i]._id %>" id="<%= elections[i]._id %>-e">
+            <li class="election card shadow-lg p-3" style="background-color: rgb(5, 53, 98); color:white" id="<%= elections[i]._id %>-ea">
+                <p ><%= elections[i].name %></p>
+                <p style="font-size: 20px;" id="<%= elections[i]._id %>"></p>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <form class="form-a" action='/admin/create_new_election' method='POST'>
+        <input name="elect_name" type="text" style="box-shadow: 0px 2px 2px 0px black;"
+            placeholder="Enter name of election">
+        <input type="submit" style="border: none;  width : 100px; background-color: rgb(5, 53, 98); color:yellow"
+            value="proceed">
+    </form>
+    <div id="add-user" style="padding : 0px; height: 100px; display: flex; box-shadow: 0px 0px 5px -2px white; justify-content: center; cursor: pointer; align-items: center; width : 100px; border-radius: 50%; position: fixed; bottom : 10px; right : 10px">
+        <h3  style="color : white; font-weight: bold; text-align: center;">
+            <!-- create new user -->
+            <a href="/users/create" style="text-decoration: none; color : white">Add User</a>
+        </h3>
+    </div>
+    
+</div>
+<script>
+    var elections = '<%- JSON.stringify(elections) %>';
+    elections = JSON.parse(elections);
+    for (let i = 0; i < elections.length; i++) {
+        let eId = document.getElementById(elections[i]._id + "-e");
+        let eIdb = document.getElementById(elections[i]._id);
+        let eIda = document.getElementById(elections[i]._id + "-ea");
+        const diffTime = new Date(elections[i].scheduleTime) - new Date();
+        const diffTime1 = new Date(elections[i].endTime) - new Date();
+        if (diffTime < 0 && diffTime1 > 0) {
+            eId.style.display = 'none';
+        }
+        if(diffTime1 < 0) {
+            eId.style.display = 'inline';
+            eId.href = "/result?e_id="+elections[i]._id;
+            eIda.style.backgroundColor = 'rgb(29 31 33)';
+            eIda.style.color = 'chartreuse'
+            eIdb.innerHTML = 'Already Ended';    
+            eIdb.style.color = '#979292';
+        }
+        if(diffTime > 0) {
+            eIda.style.backgroundColor = 'rgb(29 31 33)';
+            eIda.style.color = 'chartreuse'
+            eIdb.innerHTML = 'Already Ended';    
+            eIdb.style.color = 'rgb(0 202 156)';
+        }
+    }
+    const val = 'Starts In : ';
+    setInterval(() => {
+        for (let i = 0; i < elections.length; i++) {
+            let eId = document.getElementById(elections[i]._id);
+            const diffTime = new Date(elections[i].scheduleTime) - new Date();
+            const diffTime1 = new Date(elections[i].endTime) - new Date();
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffHrs = Math.floor(diffTime / (1000 * 60 * 60) - (diffDays * 24));
+            const diffMins = Math.floor(diffTime / (1000 * 60) - diffHrs * 60 - (diffDays * 24 * 60));
+            const diffSecs = Math.floor(diffTime / (1000) - diffMins * 60 - diffHrs * 60 * 60 - (diffDays * 24 * 60 * 60));
+            if(diffTime1 > 0){
+                eId.innerHTML = val + diffDays + 'd ' + diffHrs + 'h ' + diffMins + 'm ' + diffSecs + 's';
+            }
+        }
+    }, 1000);
+</script>

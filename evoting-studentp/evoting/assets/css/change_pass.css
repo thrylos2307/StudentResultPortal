@@ -1,0 +1,72 @@
+.body-a{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #030303;
+}
+  * {
+    border : none; 
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 350px;
+    height: 500px;
+    margin: auto;
+  }
+  input {
+    height : 45px;
+    border-bottom: 1px solid;
+    margin-bottom: 5px;
+    background-color: #292727;
+    /* -webkit-box-shadow: 0 0 1px 3px blue inset;
+    -moz-box-shadow: 0 0 1px 3px blue inset;
+    box-shadow: 0px 0 2px 3px blue inset; */
+    border-radius : 0px;
+    padding : 5px;
+  }
+  input:focus {
+    outline: none;
+  }
+  label {
+    margin-bottom : 10px;
+    padding : 0px;
+    display : none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  button{
+   width: 130px;
+   height: 35px;
+   margin-left : 5px;
+    background-color: rgb(16, 30, 190);
+    color : white;
+    font-weight: bold;
+    margin : 0px auto;
+    border-radius : 3px;
+    cursor: pointer;
+    boxing : border-box;
+    margin-top: 5px;
+  }
+  button:hover {
+    width : 140px;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+  }
+  input:focus::placeholder {
+    color: transparent;
+  }

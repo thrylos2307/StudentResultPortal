@@ -1,0 +1,1 @@
+const add = document.getElementsByClassName('.add-candidate');

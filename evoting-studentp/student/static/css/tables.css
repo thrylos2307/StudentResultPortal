@@ -1,0 +1,27 @@
+body {
+    background-image: url('../board.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+ .container-fluid h1,h3{
+     margin-left: 70%;
+ }
+ .container-fluid h1{
+     font-family: 'Train One', cursive;
+ }
+ .container-fluid h3{
+     font-family: 'Zilla Slab', serif;
+ }
+ 
+ .container-fluid hr{
+     border-top: 1px dashed #e0dbd1;
+     margin-left: 5%;
+     margin-right: 5%;
+ }
+ .d-flex input{
+     width: 170px;
+     margin: 0 10 0 10;
+ }
+ td{
+     color:#9ddfd3;
+ }

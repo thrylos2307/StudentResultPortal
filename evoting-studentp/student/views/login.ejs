@@ -1,0 +1,48 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/login.css" />
+
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+
+                                    <h1 class="display-3" style="text-align: center;">Welcome to IIIT Guwahati
+                                    </h1>
+                                    <form id="login_info" action="/login/create-session" method="POST">
+                                        <div class="form-group mx-sm-4">
+                                            <!-- <label for="id" class="col-sm-3 control-label">Id/Roll</label> -->
+                                            <i class="fa fa-user"></i>
+                                            <input type="text" id="id" name="id" required placeholder="Id/Roll"
+                                                class='form-control px-5'>
+                                        </div>
+
+                                        <div class="form-group mx-sm-4">
+                                            <!-- <label for="password" class="col-sm-3 control-label">Password</label> -->
+                                            <i class="fa fa-lock"></i>
+                                            <input type="password" id="password" name="password" required
+                                                placeholder="Password" class='form-control px-5'>
+                                        </div>
+                                        <div class="col-md-12 text-centre">
+                                            <button class="btn btn-primary rounded-pill" value="student"
+                                                name="login">Student</button>
+                                            <button class="btn btn-primary rounded-pill " value="faculty"
+                                                name="login">Faculty</button>
+                                            <button class="btn btn-primary rounded-pill " value="admin"
+                                                name="login">Admin</button>
+
+                                        </div>
+                                        <a href="/forgot_password">Forget Password?</a>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,59 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<link rel="stylesheet" type="text/css" href="/css/stage1.css" />
+<div class="container" style="box-sizing: border-box;">
+<% for(var i = 0; i < data.length; i++) {%>
+    <div class="graph" style="margin : auto; width : 350px; height : 360px;">
+        <canvas style="margin : 10px;" height="100" width="100" id="myChart-<%= i %>"></canvas>
+    </div>
+<% } %>
+</div>
+<script>
+    
+    console.log('hello');
+    let data = JSON.parse('<%- JSON.stringify(data)%>');
+    // data = JSON.parse(JSON.stringify(data));
+    console.log(data.length);
+    for(var i = 0; i < data.length; i++){
+        var ctx = document.getElementById("myChart-" + i).getContext('2d');
+        new Chart(ctx, {
+            type : 'pie',
+            data : {
+                datasets : [{
+                    data : data[i].labels,
+                    backgroundColor : [
+                        "#f38b4a",
+                        "#56d798",
+                        "#ff8397"
+                    ],
+                    hoverBackgroundColor: [
+                        "#f38b4a",
+                        "#56d798",
+                        "#ff8397"
+                    ],
+                    borderColor : [
+                        "#f38b4a",
+                        "#56d798",
+                        "#ff8397"
+                    ]
+                }],
+                labels : data[i].datasets[0].data
+            },
+            options: {
+                animation: {
+                    onProgress: function(animation) {
+                        animation.animateRotate = true
+                    }
+                },
+                title: {
+                    display: true,
+                    fontColor : 'whitesmoke',
+                    fontSize : 14,
+                    padding : '10',
+                    fontStyle : 'bold',
+                    text: data[i].datasets[0].label
+                }
+            }
+        });
+    }
+</script>

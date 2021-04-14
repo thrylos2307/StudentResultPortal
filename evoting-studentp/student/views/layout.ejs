@@ -1,0 +1,73 @@
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- extracting here the css part  of sub page -->
+    </head>
+    <style>
+        #layout-main{
+            height: 100vh;
+        }
+        *::-webkit-scrollbar { 
+                display: none;
+            }
+    </style>
+    <body>
+
+        <main id="layout-main">
+            <%- body %>
+        </main>
+        <%- include('_footer'); %>
+        <%- script %>
+
+
+    </body>
+   
+    <script>
+        <% if (flash.success && flash.success.length > 0) { %>
+            new Noty({
+                theme: 'relax',
+                text: '<%= flash.success%>',
+                type: 'success',
+                layout: 'topRight',
+                timeout: 1500
+
+            }).show();
+    <% } %>
+    <% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+                theme: 'relax',
+                text: '<%= flash.error%>',
+                type: 'error',
+                layout: 'topRight',
+
+                timeout: 2500
+            }).show();
+    <% } %>
+    <% if (locals.message) { %>
+            new Noty({
+                theme: 'relax',
+                text: '<%= message%>',
+                type: 'success',
+                layout: 'topRight',
+                timeout: 1500
+
+            }).show();
+    <% } %>
+    <% if (locals.error) { %>
+            new Noty({
+                theme: 'relax',
+                text: '<%= error%>',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 2500
+
+            }).show();
+    <% } %>
+    </script>
+
+</html>

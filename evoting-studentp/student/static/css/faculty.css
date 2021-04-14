@@ -1,0 +1,86 @@
+body {
+   background-image: url('../board.png');
+   background-repeat: no-repeat;
+   background-size: cover;
+  }
+.container-fluid h1,h3{
+    margin-left: 70%;
+    margin-top: 20px;
+}
+.container-fluid h1{
+    font-family: 'Train One', cursive;
+}
+.container-fluid h3{
+    font-family: 'Zilla Slab', serif;
+}
+
+.container-fluid hr{
+    border-top: 1px dashed #e0dbd1;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.left{
+    
+    margin:5% 0 0 10%;
+    position:fixed;
+}
+.left i{
+    
+    font-size: larger;
+    color:whitesmoke;
+}
+.left i:hover{
+
+    position: fixed;
+    font-size: 30px;
+}
+.d-flex input{
+    width: 170px;
+    margin: 0 10 0 10;
+}
+#hr hr{
+    width: 20%;
+    border:1px dashed #f8e7c4;
+}
+.d-flex input:hover{
+   
+    -webkit-transform:scale(1.2,1.2);
+    -moz-transform:scale(1.2,1.2);
+}
+#tables{
+    transition:  .2s; /* Animation */
+    width: 100px;
+    height: 50px;
+   
+  }
+#tables input:hover {
+    transform: scale(1.3); 
+}
+.btn-outline-success{
+color:white !important;
+}
+.form-style-8 button{
+    background-color: rgb(149, 204, 192); 
+    padding: 5px;
+    margin-left: 40%;
+    padding:10px;
+}
+.btnfos-3 {
+    
+    border: 1px solid white;
+    box-shadow: 0px 2px 0 white, 2px 4px 6px #eee;
+    letter-spacing: 1px;
+    -webkit-transition: all 150ms linear;
+            transition: all 150ms linear;
+  }
+  
+  .btnfos-3:hover {
+    background: #42b38d;
+    border: 1px solid rgba(212, 13, 13, 0.05);
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+    color: #b9f8f5;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 #136a65;
+    -webkit-transition: all 250ms linear;
+            transition: all 250ms linear;
+  }

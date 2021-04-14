@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="/css/stage1.css" />
+<div class="body" style="background-color: #121111 !important;">
+<a href="/users/auth"><button class="Button_gmail">Gmail Auth</button></a>
+</div>
+<script>
+    function preventBack() {
+        window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+    window.onunload = function() {
+        null
+    };
+</script>

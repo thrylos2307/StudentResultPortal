@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alumni</title>
+
+    
+    <!-- MAIN CSS -->
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+
+input{
+  margin-top: 10px;
+  margin-right: 8px;
+  background-color: black;
+  color: white;
+
+}
+
+
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+.w3-col{
+  margin-left: auto;
+  margin-right: auto;
+}
+.gallery{
+  height: 500px;
+  background-color: slategray;
+  background-image: url('https://www.solarwindsmsp.com/sites/solarwindsmsp/files/blog/2017/10/local_admin_rights.jpg');
+  color: black;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  
+
+}
+p{
+  color: black;
+}
+
+</style>
+</head>
+
+<body>
+    
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+      <a href="home" class="w3-bar-item w3-button w3-wide">ALUMNI-CONNECT</a>
+      <!-- Right-sided navbar links -->
+      <div class="w3-right w3-hide-small">
+        <form action="/home" method="POST">
+            
+            <input type="submit" name="Type" value="event" />
+            <input type="submit" name="Type" value="jobs" />
+            <input type="submit" name="Type" value="internships" />
+
+            <input type="submit" name="Type" value="apply" />
+            <input type="submit" name="Type" value="batch" />
+        
+            <input type="submit" name="Type" value="reachout" />
+
+            <input type="submit" name="Type" value="about" />
+            <input type="submit" name="Type" value="Logout" />
+
+        </form>
+      </div>
+     
+  
+     
+    </div>
+  </div>
+  <div class="gallery" >
+
+  </div>
+  <div class="c1" style="background-color: ">
+    
+    <!-- <button style="font-size:24px; margin: 0 auto; display: block;" > <i class="fa fa-question-circle"><a href="http://localhost:8000/">Helpdesk?</a></i></button> -->
+    <p style="text-align: center; font-size: 30px; padding-bottom: 3px;">Welcome Admin</p>
+    <!-- <p style="text-align: center; font-size: 25px; padding-bottom: 3px; font-style: italic;">MANAGE...</p> -->
+    
+  </div>
+
+
+  
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-64">
+    <a href="home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+   
+   
+  </footer>
+   
+  <script>
+  // Modal Image Gallery
+  function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    var captionText = document.getElementById("caption");
+    captionText.innerHTML = element.alt;
+  }
+  
+  
+  var mySidebar = document.getElementById("mySidebar");
+  
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+    } else {
+      mySidebar.style.display = 'block';
+    }
+  }
+  
+  // Close the sidebar with the close button
+  function w3_close() {
+      mySidebar.style.display = "none";
+  }
+  </script>
+
+   
+  
+  </body>
+  </html>
+  

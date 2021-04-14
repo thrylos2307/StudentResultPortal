@@ -1,0 +1,181 @@
+body, html{
+    margin : 0px;
+    padding : 0px;
+}
+.Button_gmail {
+    font-weight: bold;
+    font-size: larger;
+    background-color: #1a1b1c;
+    color: #fcecec;
+    box-shadow: 0px 2px 12px -3px papayawhip;
+    padding : 10px;
+    width : 160px;
+    height : 52px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.Button_gmail:hover{
+    box-shadow: 1px 2px 2px -1px grey;
+}
+.Button_gmail:focus{
+    outline: none;
+}
+.body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: url('../images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+
+    /* background: linear-gradient(#e66465, #9198e5); */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 500px;
+}
+
+.form > input {
+    width : 300px;
+    margin : 5px;
+    height : 40px;
+    border-radius: 3px;
+}
+input:focus {
+    outline: none;
+}
+
+.election-box {
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    grid-gap: 15px;
+    width : 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    justify-content: center;
+    height: auto;
+    max-height : 70vh;
+    padding : 5px;
+    box-sizing: border-box;
+}
+
+.position {
+    box-shadow: 0px 1px 1px 0px black;
+    background-color: white;
+    background-color: rgb(223, 220, 185);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.position:hover{
+    box-shadow : 1px 2px 2px -1px white;
+}
+.position-h {
+    font-weight: bolder;
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: center;
+    background-color: rgb(5, 53, 98);
+    margin-top:0px;
+    height : 30px;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0px 0px;
+}
+.candidates {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+    padding: 0px 0px 15px 0px;
+}
+
+.candidate {
+    cursor: pointer;
+    color: black;
+    width : 50%;
+    height : 45px;
+    margin : 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: whitesmoke;
+    box-shadow: 1px 2px 2px -1px rgb(5, 53, 98);
+}
+
+.candidate:hover{
+    box-shadow: 1px 3px 3px -1px black;
+    border: 1px solid black;
+}
+
+.container {
+     width : 100%;
+     height : 100%;
+     overflow-y: scroll;
+     display: grid;
+     grid-template-columns: 400px 400px 400px;
+     grid-template-rows: 400px;
+     grid-gap: 5px;
+     justify-content: center;
+     align-items: center;
+     background: url('./images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.graph {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    box-shadow : 0px 2px 2px 0px black;
+    background-color: rgb(2, 19, 36);
+    -webkit-box-shadow: 0 0 10px rgb(2, 19, 36);
+}
+
+.graph:hover {
+    box-shadow: 0 0 5px rgb(2, 19, 36);
+}
+
+@media only screen and (max-width: 1400px) {
+    .election-box {
+        grid-template-columns: 300px 300px;
+    }
+    .container {
+        grid-template-columns: 400px 400px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .election-box {
+        grid-template-columns: 450px;
+    }
+    .container {
+        grid-template-columns: 400px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .election-box {
+        grid-template-columns: 420px;
+    }
+    .container {
+        grid-template-columns: 420px;
+    }
+}
+::-webkit-scrollbar { 
+    display: none; 
+}

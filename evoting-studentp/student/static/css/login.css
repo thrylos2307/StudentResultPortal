@@ -1,0 +1,28 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('../IIIT-Guwahati.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.form-control {
+	padding-left: 10px;
+}
+.form-group {
+	position: relative;
+    margin-bottom: 30px;
+}
+ i {
+	position: absolute;
+	left: 13px;
+	top: 11px;
+	font-size: 18px;
+}
+button{
+  margin: 0 40  0 30 ;
+}

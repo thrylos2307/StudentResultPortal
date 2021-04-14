@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="/css/change_pass.css"/>
+<div class="body-a" style="background-color: #1b1b1b; height: 100vh;  box-sizing: border-box;">
+    <form method="POST" action="/users/update_pass">
+        <label>Enter old password</label>
+        <input class="shadow-lg" type="password"minlength="8" pattern=".{8,}" autocomplete="off" required onfocus="show(0)" onfocusout="dontShow(0)" name="old_pass" placeholder="Enter old password">
+      <label>Enter new password</label>
+        <input type="password" minlength="8" pattern=".{8,}"  id="pass" autocomplete="off" required onfocus="show(1)" onfocusout="dontShow(1)" name="new_pass" placeholder="Enter new password">
+      <label>Re-enter new password</label>
+        <input class="shadow-lg" type="password"  minlength="8" pattern=".{8,}" id="cpass" autocomplete="off" required onfocusout="dontShow(2)" onfocus="show(2)" name="confirm_new_pass" placeholder="Re-enter new password">
+        <div type="text" id="match" value="password and confirm-password does not match" style="width: 100%;  font-size: 20px; font-weight: bold; text-align: center;border: none; display: none; color: white;">password and confirm-password does not match</div>
+        <button class="shadow-lg bg-dark" type="submit" class="btn btn-primary" style="width: 200px; border: none !important; height: 40px;">Change Password</button>
+    </form>
+</div>
+<script>
+    let label = document.getElementsByTagName("label");
+    function show(i) {
+        label[i].style.display = "inline";
+    }
+    function dontShow(i) {
+        label[i].style.display = "none";
+    }
+    const pass = $('#pass');
+    const cpass = $('#cpass');
+    const match = $('#match');
+    $(document).keyup(function(e) {
+      e = $(e.currentTarget.activeElement);
+      var length = e.val().length;
+      if(length < 8 && length > 0) {
+        e.css('background-color', 'red');
+      }else if(length >= 8){
+        e.css('background-color', 'green');
+      }else {
+        e.css('background-color', 'white');
+      }
+      let lp = pass.val();
+      let clp = cpass.val();
+      if(lp !== clp) {
+        match.html('password and confirm-password does not match');
+        match.css('display', 'inline');
+        match.css('background-color', '#151B54');
+      }else {
+        match.html('');
+        match.css('display', 'none');
+        match.css('background-color', 'green')
+      }
+    });
+</script>

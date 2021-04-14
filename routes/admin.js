@@ -11,13 +11,21 @@ router.post('/create_new_election', authenticated.checkAdminLoggedIn, authentica
 router.post('/create_new_position', authenticated.checkAdminLoggedIn, authenticated.stage2, position_Controller.create);
 router.get('/get_election_info', authenticated.checkAdminLoggedIn, authenticated.stage2, async (req, res) => {
     const eId = req.query.election_id;
-    let elections = await election.findById(eId).populate({
+    let elections = await election.findById(eId, (err)=>{
+        if(err){
+            return res.render('enter_election_data', {
+                positions : undefined,
+                id : undefined
+            });
+        }
+    }).populate({
        path: 'positions',
        populate: {
            path: 'candidate',
            model: 'User'
        }
     });
+    // console.log("found data of " + election_id);
     return res.render('enter_election_data', {
         positions : elections.positions,
         id : elections._id

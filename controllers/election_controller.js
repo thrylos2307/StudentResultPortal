@@ -20,7 +20,7 @@ module.exports.create = function (req, res) {
         }
         var positions;
         req.flash('success','Election successfully created!');
-        console.log('election created');
+
         return res.render('enter_election_data', {
             positions : positions,
             id : id._id

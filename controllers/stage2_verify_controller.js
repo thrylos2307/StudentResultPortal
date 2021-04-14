@@ -5,6 +5,9 @@ module.exports.verify = (req, res) => {
     const id = req.body.id;
     const password = req.body.password;
     User.findOne({ email: req.user.email }, async (err, user) => {
+        if(err){
+            return res.redirect('back');
+        }
         if (user.uid == id) {
             if (await bcrypt.compare(password, user.password)) {
                 req.session.uid = id;

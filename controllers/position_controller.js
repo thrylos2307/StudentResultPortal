@@ -4,7 +4,7 @@ const Position = require('../models/position');
 module.exports.create = function (req, res) {
     try {
         Position.create({ name: req.body.position_name }, (err, position) => {
-            if (err) { console.log('error in creating position', err); return; }
+            if (err) { console.log('error in creating position', err); return res.redirect('/admin/get_election_info?election_id=' + req.body.elect_id); }
             console.log('position created');
             Election.findById(req.body.elect_id, (err, election) => {
                 if (err) { console.log('error in finding election ID', err); return; }

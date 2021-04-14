@@ -14,22 +14,26 @@ router.get('/page' , authenticated.checkUserLoggedIn, authenticated.stage2, asyn
             voted = true;
         }
     });
-    console.log(voted);
     if(voted) {
         await elections.find({}, (err, data) => {
-            if(err){console.log('error in finding elections list', err); return;}
+            if(err){console.log('error in finding elections list', err); return res.redirect('back');}
              return res.render('vote', {
                 elections: data
             });
         });
     }else {
-        let election = await elections.findById(eId).populate({
+        let election = await elections.findById(eId, (err) => {
+            if(err){
+            return res.redirect('back');
+            }
+        }).populate({
             path: 'positions',
             populate: {
                 path: 'candidate',
                 model: 'User'
             }
         });
+        
         return res.render('voting_page' ,{
             data : election,
             e_id : eId
@@ -38,7 +42,7 @@ router.get('/page' , authenticated.checkUserLoggedIn, authenticated.stage2, asyn
 });
 router.get('/voter', authenticated.checkUserLoggedIn, authenticated.stage2, (req, res) => {
     elections.find({}, (err, data) => {
-        if(err){console.log('error in finding elections list'); return;}
+        if(err){console.log('error in finding elections list'); data = {}}
         return res.render('vote', {
             elections: data
         });
@@ -65,7 +69,6 @@ router.post('/count', authenticated.checkUserLoggedIn, authenticated.stage2, asy
         });
      }
     req.flash('success','Voted successfullt');
-    console.log("vote created");
     return res.render('voted');
 });
 module.exports = router;

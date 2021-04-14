@@ -15,7 +15,12 @@ module.exports = async (req, res) => {
     //         }
     //     })
     // })
-    await election.findById(req.query.e_id).populate({
+    await election.findById(req.query.e_id, (err)=>{
+        if(err){
+            req.flash('error', 'please use corretc election id');
+            return res.redirect('back');
+        }
+    }).populate({
         path: 'positions',
         populate: {
             path: 'candidate'
@@ -57,7 +62,6 @@ module.exports = async (req, res) => {
                 }],
                 labels: labels
             };
-
             newData.push(datasets);
         });
         return res.render('results', {

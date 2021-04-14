@@ -13,10 +13,13 @@ var fs = require('fs');
 // });
 router.get('/', authenticated.checkLoggedIn, authenticated.stage2, (req, res) => {
     // req.flash('success', 'logged in')
+    // return res.json({
+    //     user_is_voter : req.user.isVoter
+    // });
     return req.user.isVoter ? res.render('voter_home') : res.redirect('/admin');
 });
 router.get('/contact', authenticated.checkLoggedIn, authenticated.stage2, (req, res) => {
-    res.render('suggestions')
+    res.render('suggestions');
 });
 router.post('/suggestions', authenticated.checkLoggedIn, authenticated.stage2, (req, res) => {
     const data = req.body;
@@ -41,7 +44,6 @@ router.post('/suggestions', authenticated.checkLoggedIn, authenticated.stage2, (
                 message: message,
                 name: req.user.name
             };
-            console.log(replacements)
             var htmlToSend = template(replacements);
 
             var mailOptions = {
@@ -56,11 +58,13 @@ router.post('/suggestions', authenticated.checkLoggedIn, authenticated.stage2, (
                     return res.redirect('back');
                 } else {
                     req.flash('success', 'Message has been delivered');
-                    console.log('Email sent: ' + info.response);
                     return res.redirect('/');
                 }
             });
         })
+    }else{
+        req.flash('error', 'format not correct');
+        return res.redirect('back')
     }
 })
 router.get('/failed', (req, res) => {

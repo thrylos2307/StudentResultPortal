@@ -7,11 +7,12 @@ const authenticated = require('../config/authenticated');
 // router.post('/verify_and_count', authenticated.checkUserLoggedIn, authenticated.stage2, voteController.count);
 router.get('/page' , authenticated.checkUserLoggedIn, authenticated.stage2, async (req, res) => {
     const eId = req.query.election_id;
-    console.log(req.user._id);
     let voted = false;
     await votes.findOne({voter : req.user._id, eId : eId}, (err, data) => {
+        
         if(data) {
             voted = true;
+            
         }
     });
     if(voted) {

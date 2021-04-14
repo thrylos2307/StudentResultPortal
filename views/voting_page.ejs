@@ -102,6 +102,14 @@
 <script src="/js/updateTime.js"></script>
 <div style="display: none;">
 <script>
+  function preventBack() {
+        window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+    window.onunload = function() {
+        null
+    };
     let end = document.getElementById('end');
     data = JSON.parse('<%- JSON.stringify(data) %>');
     setInterval(() => {

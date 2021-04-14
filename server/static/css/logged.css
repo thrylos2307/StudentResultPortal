@@ -26,14 +26,15 @@ margin-bottom: 60px;
     background-repeat: no-repeat;
     background-size: 100% 600px;
     padding-bottom: 10px;
+    position: relative;
 
 }
 .container-fluid i{
     color:rgba(79, 128, 69, 0.445);
-    position: fixed;
+    position: absolute;
 }
 .container-fluid i:hover{
-    position: absolute;
+    position: fixed;
     font-size: 30px;
 }
 .container-fluid h1{

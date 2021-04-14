@@ -5,8 +5,9 @@ const csv = require('csvtojson');
 var glob = require("glob")
 const fs = require('fs');
 const { json } = require('body-parser');
-
-module.exports.a = (req, res) => {
+const util = require('util');
+const query = util.promisify(con.query).bind(con);
+module.exports.a = async (req, res) => {
   console.log(req.body);
   const id = req.body.id;
   const pass = req.body.password;
@@ -20,18 +21,18 @@ module.exports.a = (req, res) => {
   // alkmdlad
   // a;lsdm
   if (typeof req.body.id == "string") {
-    con.query(`insert into faculty_login values(${req.body.id},'${req.body.name}','${req.body.email}','${req.body.password}')`, function (err, result) {
+    await query(`insert into faculty_login values(${req.body.id},'${req.body.name}','${req.body.email}','${req.body.password}')`, function (err, result) {
       if (err) {
         succes = 0;
         console.log(err.sqlMessage, ' while inserted value for id=', req.body.id);
-        req.flash("error", "error while inserting" + req.body.id);
-        res.locals.error = req.flash("error");
-
+        req.flash("error", "data already exist "+req.body.id);
+        
+        return res.redirect("/login");
       }
       else if (result) {
         succes = 1;
-        console.log("id=", req.body.id[i], " got inserted !!");
-
+        console.log("id=", req.body.id, " got inserted !!");
+        res.redirect('/login');
       }
 
     });
@@ -39,20 +40,24 @@ module.exports.a = (req, res) => {
   else {
     for (var i = 0; i < req.body.id.length; i++) {
       con.query(`insert into faculty_login values(${req.body.id[i]},'${req.body.name[i]}','${req.body.email[i]}','${req.body.password[i]}')`, function (err, result) {
-        console.log(result);
+        
         if (err) {
           succes = 0;
           console.log(err.sqlMessage, ' while inserted value for id=', req.body.id[i]);
-          // res.redirect('/login');
-          i = req.body.id.length;
+          req.flash("error", "data already exist "+req.body.id[i]);
+        
+          res.locals.error=req.flash('error');
+          i=req.body.id.length
+         
         }
-        else if (result) {
+        else  {
           console.log("id=", req.body.id[i], " got inserted !!");
         }
 
       });
     }
   }
+  
   if (succes) {
     res.render("logged.ejs");
   }

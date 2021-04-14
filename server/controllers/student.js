@@ -4,8 +4,9 @@ var path = require("path")
 const csv = require('csvtojson');
 var glob = require("glob")
 const fs = require('fs');
-
-module.exports.a = (req, res) => {
+const util = require('util');
+const query = util.promisify(con.query).bind(con);
+module.exports.a = async (req, res) => {
   console.log(req.body);
   const id = req.body.id;
   const pass = req.body.password;
@@ -19,16 +20,18 @@ module.exports.a = (req, res) => {
   // alkmdlad
   // a;lsdm
   if (typeof req.body.id == "string") {
-    con.query(`insert into student_login values(${req.body.id},'${req.body.email}','${req.body.name}','${req.body.password}','${req.body.batch}','${req.body.branch}','${req.body.group}','${req.body.sem}')`, function (err, result) {
+    await query(`insert into student_login values(${req.body.id},'${req.body.email}','${req.body.name}','${req.body.password}','${req.body.batch}','${req.body.branch}','${req.body.group}','${req.body.sem}')`, function (err, result) {
       console.log(result);
       if (err) {
         succes = 0;
-        console.log(err.sqlMessage, ' while inserted value for id=', req.body.id[i]);
-        // res.redirect('/login');
-        i = req.body.id.length;
+        console.log(err.sqlMessage, ' while inserted value for id=', req.body.id);
+        req.flash("error","value already exist "+req.body.id);
+        return res.redirect("/login");
+        
       }
       else if (result) {
-        console.log("id=", req.body.id[i], " got inserted !!");
+        console.log("id=", req.body.id, " got inserted !!");
+        res.redirect('/login');
       }
 
     });
@@ -40,7 +43,7 @@ module.exports.a = (req, res) => {
         if (err) {
           succes = 0;
           console.log(err.sqlMessage, ' while inserted value for id=', req.body.id[i]);
-          // res.redirect('/login');
+          
           i = req.body.id.length;
         }
         else if (result) {

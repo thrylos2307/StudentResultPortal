@@ -18,7 +18,7 @@ module.exports.create = async function (req, res) {
         }
         else {
             console.log("authorized user");
-            var table = req.body.branch + '_' + req.body.sem + '_' + req.body.code + '_' + result1[0].Major + '_' + req.body.batch_year;
+            var table = req.body.branch.toUpperCase() + '_' + req.body.sem + '_' + req.body.code + '_' + result1[0].Major + '_' + req.body.batch_year;
             await query(`create table if not exists ?? (roll bigint primary key)`, [table], function (err, result) {
                 if (err) {
                     console.log(err);

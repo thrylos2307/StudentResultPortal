@@ -4,8 +4,9 @@ var path = require("path")
 const csv = require('csvtojson');
 var glob = require("glob")
 const fs = require('fs');
-
-module.exports.a = (req, res) => {
+const util = require('util');
+const query = util.promisify(con.query).bind(con);
+module.exports.a = async (req, res) => {
   console.log(req.body);
   var succes = 1
   ////to do convert into 2d array for printing final error 
@@ -15,19 +16,19 @@ module.exports.a = (req, res) => {
   // alkmdlad
   // a;lsdm
   if (typeof req.body.Code == "string") {
-    con.query(`insert into subject_info values('${req.body.Code}','${req.body.Major}','${req.body.Faculty_id}','${req.body.FacultyName}',${req.body.Sem})`, function (err, result) {
+    await query(`insert into subject_info values('${req.body.Code}','${req.body.Major}','${req.body.Faculty_id}','${req.body.FacultyName}',${req.body.Sem})`, function (err, result) {
       console.log(result);
       if (err) {
         succes = 0;
         console.log(err.sqlMessage, ' while inserted value for id=', req.body.Code);
-        req.flash("error","error while inserting"+req.body.Code);
-        res.locals.error=req.flash("error");
+        req.flash("error","data already exist "+req.body.Code);
        
+        return res.redirect("/login");
       }
       else if (result) {
         succes=1;
         console.log("id=", req.body.Code, " got inserted !!");
-        
+        res.redirect('/login');
       }
 
     });
@@ -39,8 +40,9 @@ module.exports.a = (req, res) => {
         if (err) {
           succes = 0;
           console.log(err.sqlMessage, ' while inserted value for code=', req.body.Code[i]);
-          req.flash("error","error while inserting"+req.body.Code[i]);
-          res.locals.error=req.flash("error");
+          req.flash("error", "data already exist "+req.body.Code[i]);
+           res.locals.error=req.flash('error');
+          
           i = req.body.id.length;
         }
         else if (result) {

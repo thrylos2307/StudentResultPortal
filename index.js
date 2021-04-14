@@ -57,7 +57,7 @@ app.use(function (req, res, next) {
   })
 app.use('/', require('./routes'));
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`server is up at ${port}`);
   return;
 });

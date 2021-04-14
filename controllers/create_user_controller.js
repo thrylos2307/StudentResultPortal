@@ -12,8 +12,9 @@ module.exports.create = async function (req, res) {
     const voter = req.body.isVoter.trim();
     const name = req.body.name.trim();
     const email = req.body.email.trim();
-    if (password.length < 8 && email && voter && name && id) {
+    if (password.length < 8 || !email || !voter || !name || !id) {
         req.flash('error','Unable to create voter!');
+        console.log(err)
         return res.redirect('back');
     }
     var hash = await bcrypt.hashSync(password, saltRounds);
@@ -34,7 +35,6 @@ module.exports.upload = (req, res) => {
     csv().fromFile(req.file.path).then(async (jsonObj) => {
         
         for (var key in jsonObj) {
-            console.log(jsonObj[key]);
             let json = jsonObj[key];
             var hash = bcrypt.hashSync(json.password, saltRounds);
             await user.create({email : json.email, uid : json.uid, name : json.name, isVoter : json.isVoter.toLowerCase(),password: hash}, (err, data) => {

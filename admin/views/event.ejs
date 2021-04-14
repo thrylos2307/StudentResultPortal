@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <title>events</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
+
+<style>
+     body {
+        background-color: lightgrey;
+    }
+    input{
+        
+        font-size: 20px;
+        
+        float: right;
+       
+        right: 30px;
+        
+        border: 3px solid green;
+    }
+        #search1 {
+    text-align: right;
+    color: yellow;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    margin-right: 30px;
+            
+    }
+</style>
+    
+</head>
+
+<body>
+
+    
+<br>
+<div class="option" style="height: 60px; width: 90%; border-style: solid ;">
+    
+   
+    <form action="/event" method="POST">
+        
+     <h2> EVENTS <input class="input btn btn-primary"  type="submit" name="update_event" value="REMOVE_EVENT" style="margin-left: 10px; margin-right: 10px; margin: 5px;">
+      <input class="input btn btn-primary" type="submit" name="update_event" value="ADD_EVENT" style="margin-left: 10px; margin-right: 10px; margin: 5px;">
+     </h2>
+    </form>
+
+</div>
+<br><br>
+    <p id="search1">Filter</p>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Your type.."  ></input>
+    <br><br>
+    <table id="myTable" border="1px" width="100%" height="auto" class="table table-striped">
+        <tr>
+            
+            <th>serial_num</th>
+            <th>message</th>
+            <th>before_start</th>
+           
+        </tr>
+
+
+        <%temp.forEach((x) => {%>
+
+            <tr>
+                
+                <td>
+                    <%=x.serial_num%>
+                </td>
+                <td>
+                    <%=x.message%>
+                </td>
+                <td>
+                    <%=x.before_start%>
+                </td>
+                
+               
+
+            </tr>
+            <%})%>
+
+    </table>
+
+</body>
+
+</html>
+
+<script>
+    function myFunction() {
+        var filter = event.target.value.toUpperCase();
+        var rows = document.querySelector("#myTable tbody").rows;
+
+        for (var i = 0; i < rows.length; i++) {
+            var firstCol = rows[i].cells[0].textContent.toUpperCase();
+            var secondCol = rows[i].cells[1].textContent.toUpperCase();
+            var thirdCol = rows[i].cells[2].textContent.toUpperCase();
+            
+         
+
+            if (firstCol.indexOf(filter) > -1 || secondCol.indexOf(filter) > -1 || thirdCol.indexOf(filter) > -1  ) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+</script>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jobs</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+#search1{
+  float: right;
+  text-align: right;
+    color: yellow;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+ 
+  margin-right: 30px;
+}
+input{
+        
+        font-size: 20px;
+        
+        float: right;
+       
+     
+        
+        border: 3px solid green;
+
+
+        margin-top: 40px;
+        
+    }
+  body{
+    background-color: lightgrey;
+  }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: black;
+  font-size: 25px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+  <div class="option" style="height: 60px; width: 90%; border-style: solid ;">
+    
+   
+    <form action="/jobs" method="POST">
+        
+     <h2> JOBS <input class="input btn btn-primary" type="submit" name="update_job" value="REMOVE_JOB" style="margin-left: 10px; margin-right: 10px; margin: 5px;">
+      <input class="input btn btn-primary" type="submit" name="update_job" value="ADD_JOB" style="margin-left: 10px; margin-right: 10px; margin: 5px;">
+     </h2>
+    </form>
+
+</div>
+
+<br>
+<br>
+
+<%temp.forEach((x) => {%>
+<div class="card">
+  
+  
+  
+  <img src="data:image/png;base64, <%= x.pic %>" alt="Recipe image" style="width: 100%"/>
+  <h2><%=x.name%></h2>
+
+  <h3><%=x.roll%></h3>
+  <p class="title"><%=x.working_at%></p>
+  <p><%=x.batch%></p>
+  <p><%=x.branch%></p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+  </div>
+  <p><button><p><%=x.reach_out%></p></button></p>
+</div>
+<%})%>
+
+</body>
+</html>

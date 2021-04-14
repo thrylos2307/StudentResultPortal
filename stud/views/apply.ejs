@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <title>apply</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+  body {
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+#search1 {
+    text-align: right;
+    color: yellow;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    margin-right: 30px;
+            
+    }
+    input{
+        
+        font-size: 20px;
+        
+        float: right;
+       
+        right: 30px;
+        
+        border: 3px solid green;
+    }
+    body {
+        background-color: skyblue;
+    }
+
+    #myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+.option{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+    
+</head>
+
+<body>
+<br>
+<h2>APPPLY</h2>
+<br>
+
+    
+    <p id="search1">Filter</p>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Your type.." style="width: 300px; " mar ></input>
+    <br><br>
+    
+    <ul id="myUL">
+
+        <%temp.forEach((x) => {%>
+        
+        
+        <div style="border: black; border-style: solid;width: 80%; margin-left: auto ; margin-right: auto;" >
+
+        <p >company name</p>    <li style="text-align: center;;"><a href=""><%=x.company%></a> </li>
+        <p>position</p>    <li style="text-align: center;"><a href=""><%=x.position%></a></li>
+        <p>contact</p> <li style="text-align: center;"> <a href=""><%=x.contact%></a></li>
+            <br>
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSf64Alz_IilyqzhrMBjk-Xf5gqsyAthEwueE_bPRhDmXk3b6Q/viewform?usp=sf_link">
+            <input type="submit" value="apply" style="background-color: greenyellow; text-align: center; float: right; margin-right: 550px; width: 100px;">
+              
+            </form>
+
+        
+           <br><br><br><br><br>
+        </div>
+        <br>
+        <br>
+     <%})%>
+    </ul>
+
+</body>
+
+</html>
+
+<script>
+    function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    </script>

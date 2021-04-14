@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>Batch</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: lightgrey;
+        }
+        p{
+            color: black;
+        }
+        html {
+            background-image: linear-gradien( lightgreen, white);
+            background-repeat: no-repeat;
+            font-size: 20px;
+            border-color: brown;
+        }
+        
+        td {
+            text-align: center;
+            padding: 5px;
+            border: 2px solid blue;
+        }
+        
+        input {
+            display: inline-block;
+            padding: 20px;
+            border-radius: 5%;
+            padding: 3px;
+            margin-bottom: 5px;
+            width: auto;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        
+        .c2 {
+            border: 2px solid black;
+            text-align: center;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: teal;
+            height: 150px;
+        }
+        a:link, a:visited {
+  /* background-color: teal; */
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: blueviolet;
+}
+    </style>
+</head>
+
+<body>
+    <br>
+    <div class="option" style="height: 60px; width: 90%; border-style: solid ;">
+        <p>Batch list :</p>
+        <a class="btn btn-primary btn-sm" href="/add_batch">add_batch</a>
+        <a class="btn btn-primary btn-sm" href="/remove_batch">remove_batch</a>
+        
+       
+       
+            
+         <!-- <p> BATCH            <input class="input" type="submit" name="update_batch" value="REMOVE_BATCH" style="margin-left: 50px; margin-right: 10px; margin: 5px; background-color: green;">
+          <input class="input" type="submit" name="update_batch" value="ADD_BATCH" style="margin-left: 10px; margin-right: 10px; margin: 5px;background-color: green;">
+         </p> -->
+        
+    
+    </div>
+
+    
+    <br><br>
+
+   
+   
+    <div class="c2">
+        <form action="/batch" method="POST">
+	   
+            <p>Input year : <input type="number" name="year" style="margin" required></p>
+          
+            <input class="btn btn-secondary" type="submit" >
+        </form>
+    </div>
+</body>
+
+</html>
+

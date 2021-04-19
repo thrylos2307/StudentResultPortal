@@ -15,9 +15,9 @@ The voter can give vote only once.
 [Result portal](https://github.com/thrylos2307/Evoting-StudentPortal/tree/evoting_studentp/evoting-studentp/student) is site were faculty can update the results for student according to their semesters and major info . Admin can create faculty , batch(student login) and major info for ease to login credentials and major info.  Students can view their result as per their semesters .
 
 ### Use
-Login as admin to create credentials for faculty and student , then login with faculty credential to create results...
-Id: admin
-Pass: admin123
-Note : remember the login password while creating credential . 
+Login as admin to create credentials for faculty and student , then login with faculty credential to create results...<br>
+Id: admin  <br>
+Pass: admin123 <br>
+Note : remember the login password while creating credential.
 
 To view site click [here](https://studentresult.herokuapp.com).

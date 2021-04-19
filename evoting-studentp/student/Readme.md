@@ -21,8 +21,31 @@ import the database from db.sql to created databse name:<br>
 mysql -u username -p database_name < db.sql
 ```
 * Create privacy.js file and include all database credentails<br>
+```
+var mysql=require('mysql');
+module.exports= mysql.createConnection({
+    host: 
+    user:
+    password: 
+    database:
+    port:
+});
+```
 * Optional:
-  &emsp;create /config/environment.js to include credentials for nodemailer to use forget passw
+  &emsp;create /config/environment.js to include credentials for nodemailer 
+ ```
+ module.exports = {
+    smtp : {
+        host: "smtp.gmail.com",
+        port: '465',
+        secure: true, 
+        auth: {
+            user: 
+            pass: 
+        }
+    }}
+ ```
+      
  
  * Run:
   ```

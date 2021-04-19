@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <link rel="stylesheet" href="css/changep.css" media="screen" type="text/css">
+    </head>
+
+    <body>
+
+        <div class="wrap">
+            <div class="avatar">
+                <img src="/user.png">
+            </div>
+            <form action="/cgpwd" method="POST">
+                <input type="password" placeholder="old password" name="oldpwd" required>
+
+                <br>
+                <input id='pass1' type="password" placeholder="New password" name="newpwd" required />
+                <!-- <div class="bar">
+                    <i></i>
+                </div> -->
+                <input id="pass2" onkeyup="checkPass();return false;" type="password" name="repwd" placeholder="Retype password"
+                    required />
+                <br>
+                <div id="error-nwl"></div>
+                <br>
+                <button type="submit">Change password</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        function checkPass() {
+            var pass1 = document.getElementById('pass1');
+            var pass2 = document.getElementById('pass2');
+            var message = document.getElementById('error-nwl');
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+
+            if (pass1.value.length > 7 && pass2.value.length > 7) {
+                pass1.style.backgroundColor = goodColor;
+                message.style.color = 'blue';
+                message.innerHTML = "character number ok!"
+                if (pass1.value == pass2.value) {
+                    pass2.style.backgroundColor = goodColor;
+                    message.style.color = 'blue';
+                    message.innerHTML = "ok!"
+                }
+                else {
+                    pass2.style.backgroundColor = badColor;
+                    message.style.color = badColor;
+                    message.innerHTML = " These passwords don't match"
+                }
+            }
+            else {
+                pass1.style.backgroundColor = badColor;
+                message.style.color = badColor;
+                message.innerHTML = " you have to enter at least 8 digit!"
+            }
+
+        }
+    </script>
+
+</html>

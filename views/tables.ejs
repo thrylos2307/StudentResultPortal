@@ -1,0 +1,57 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/tables.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<div class="container-fluid">
+
+    <br>
+    <br>
+
+    <h1>Welcome</h1>
+    <h3>
+        <%=name%> <span><i class="fas fa-chalkboard-teacher"></i></span>
+    </h3>
+    <hr>
+    <hr>
+
+</div>
+
+<div class="card-body" style="margin:0 30% 0 30%">
+    <div class="table-editable table-responsive">
+        <% if(table) {%>
+            <table class="table table-bordered table-responsive-md table-striped text-center"
+                style="border-radius: 10px !important;">
+                <thead>
+                    <tr>
+                        <th class="text-center">Table</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <%for( var i in table) {%>
+                    <tr>
+                        <td class="pt-3-half">
+                            <%= table[i]%> <a href="/faculty/results?table=<%=table[i]%>" value=<%=table[i]%>
+                                    name="table"><i class="fas fa-share-square"></i></a>
+                        </td>
+                        <td class="table-remove">
+                            <a class="delete" href="/faculty/deltable?table=<%=table[i]%>" value=<%=table[i]%>
+                                name="table"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <% } %>
+            </table>
+            <%} %>
+    </div>
+</div>

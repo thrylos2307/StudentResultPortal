@@ -1,0 +1,84 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/student.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style type="text/css">
+    .form-style-8 {
+        font: 16px Arial, Helvetica, sans-serif;
+        width: 500px;
+        padding: 30px;
+        background: #ffffff;
+        margin: 50px auto;
+        opacity: 0.8;
+        box-shadow: 0px 0px 15px rgba(119, 118, 118, 0.22);
+        -moz-box-shadow: 0px 0px 15px rgba(185, 185, 185, 0.22);
+        -webkit-box-shadow: 0px 0px 15px rgba(241, 232, 232, 0.22);
+
+    }
+
+
+    .form-style-8 select {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        display: block;
+        width: 100%;
+        padding: 7px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        background: transparent;
+        margin-bottom: 10px;
+        font: 16px Arial, Helvetica, sans-serif;
+        height: 45px;
+    }
+</style>
+<div class="body">
+    <div class="cont">
+        <div class="left">
+            <a href="/logout"><i class="fas fa-sign-out-alt" title="sign out"></i></a><br><br>
+            <a href="/changepassword"><i class="fas fa-lock" title="change password"></i></a>
+        </div>
+        <h1 style="padding-top: 5%;margin-bottom: 1%;text-align: center;">Welcome to academic portal</h1>
+        <div class="d-flex justify-content-sm-center" style="margin-top: 135px;">
+            <div id='num' style="margin-right: 10px;">
+                <button class="btn  btn-lg btn-outline-success" onclick=function1(this)>View Result</button>
+            </div>
+            <div id='num' style="margin-left:10px ;">
+                <a href="https://lh3.googleusercontent.com/proxy/UMkAJ_rPXgGenQG31fvJjlju43nSNFxHuYabq66QLaXy3gI4Zs5ns5F4k_sXsMLn1mQqtppUkY9D5-ab8MUanR-xT_WftEcrXeUV3_RmXhcAyjy8Q9hqv-Kb3A4me4-GwYU9ZeeXaWt2_iBsoS5-"><button class="btn btn-lg btn-info"
+                        onclick=function1(this)>Subject
+                        Info</button></a>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <form id='result' class="form-style-8" action="/showresult" method="POST"
+            style="display: none;border-radius: 10px;">
+            <div class="d-lg-inline">
+                <label for="sem">Select Sem:</label>
+
+                <select type='number' name="sem" id="sem">
+                    <% for(var i=1;i<=sem;i++) {%>
+                        <option value=<%=i%>><%=i%>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
+            <br>
+            <button class="btn btn-primary btn-lg btn-rounded" type="submit">Show</button>
+
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="/js/student.js"></script>

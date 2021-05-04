@@ -1,4 +1,4 @@
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter&count_bg=%233DBCC8&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
+![Visitor Count](https://profile-counter.glitch.me/{YOUR USER}/count.svg)
 # [Student Result Portal](https://github.com/thrylos2307/Evoting-StudentPortal/tree/evoting_studentp/evoting-studentp/student)
 
 [Result portal](https://github.com/thrylos2307/Evoting-StudentPortal/tree/evoting_studentp/evoting-studentp/student) is site were faculty can update the results for student according to their semesters and major info . Admin can create faculty , batch(student login) and major info for ease to login credentials and major info.  Students can view their result as per their semesters .

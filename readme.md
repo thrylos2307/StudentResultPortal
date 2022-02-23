@@ -1,6 +1,6 @@
-# [Student Result Portal](https://github.com/thrylos2307/Evoting-StudentPortal/tree/evoting_studentp/evoting-studentp/student)
+# [Student Result Portal](https://github.com/thrylos2307/StudentResultPortal)
 
-[Result portal](https://github.com/thrylos2307/Evoting-StudentPortal/tree/evoting_studentp/evoting-studentp/student) is site were faculty can update the results for student according to their semesters and major info . Admin can create faculty , batch(student login) and major info for ease to login credentials and major info.  Students can view their result as per their semesters .
+**Result portal** is site were faculty can update the results for student according to their semesters and major info . Admin can create faculty , batch(student login) and major info for ease to login credentials and major info.  Students can view their result as per their semesters .
 
 ### How to Run
 * Clone the branch:
